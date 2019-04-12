@@ -32,14 +32,10 @@ public class C_Cliente implements ActionListener {
         this.vista_cliente.btn_limpiar.addActionListener(this);
         
         this.vista_cliente.setVisible(true);
-        actualizarTabla();
+        vista_cliente.actualizarTabla(modelo_cliente.getClientes());
         
     }
     
-    private void actualizarTabla(){
-        vista_cliente.actualizarTabla(modelo_cliente.getClientes());
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -74,7 +70,7 @@ public class C_Cliente implements ActionListener {
                 // ***************  ELIMINAR  ****************
                 if (e.getSource() == vista_cliente.btn_eliminar) {
                     modelo_cliente.eliminar(Integer.parseInt(vista_cliente.txt_id.getText()));
-                    actualizarTabla();
+                    vista_cliente.actualizarTabla(modelo_cliente.getClientes());
                     vista_cliente.limpiarCampos();
                 } else {
                     
