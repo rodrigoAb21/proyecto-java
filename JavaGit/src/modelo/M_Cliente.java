@@ -3,12 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package modelo;
 
 /**
  *
- * @author KAKU
+ * @author rodrigo
  */
-public class Cliente {
+public class M_Cliente {
+    private int id;
+    private String nit;
+    private String nombre;
+    private String direccion;
     
 }
