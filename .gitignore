@@ -29,3 +29,4 @@ JavaGit/dist/
 JavaGit/nbdist/
 JavaGit/nbactions.xml
 JavaGit/nb-configuration.xml
+JavaGit/src/modelo/ConexionBD.java
