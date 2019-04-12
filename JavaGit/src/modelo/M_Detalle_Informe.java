@@ -21,14 +21,6 @@ public class M_Detalle_Informe {
     private String observacion;
     private ConexionBD db;
 
-    public M_Detalle_Informe(int informe_id, int equipo_id, float costo, String observacion) {
-        this.informe_id = informe_id;
-        this.equipo_id = equipo_id;
-        this.costo = costo;
-        this.observacion = observacion;
-        this.db =  new ConexionBD();
-    }
-
     public M_Detalle_Informe() {
         this.informe_id = 0;
         this.equipo_id = 0;
@@ -71,16 +63,16 @@ public class M_Detalle_Informe {
     
         
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int informe_id, int equipo_id, float costo, String observacion){
         try {
             db.conectar();
             String sql = "INSERT INTO detalle_informe (informe_id, equipo_id," + 
                     " costo, observacion) VALUES (?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.informe_id);
-            ps.setInt(2, this.equipo_id);
-            ps.setFloat(3, this.costo);
-            ps.setString(4, this.observacion);
+            ps.setInt(1, informe_id);
+            ps.setInt(2, equipo_id);
+            ps.setFloat(3, costo);
+            ps.setString(4, observacion);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -93,17 +85,17 @@ public class M_Detalle_Informe {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int informe_id, int equipo_id, float costo, String observacion){
          try {
             db.conectar();
             String sql = "UPDATE detalle_informe SET " + 
                     "costo = ?, " +
                     "observacion = ? " + "WHERE informe_id = ? AND equipo_id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setFloat(1, this.costo);
-            ps.setString(2, this.observacion);
-            ps.setInt(3, this.informe_id);
-            ps.setInt(4, this.equipo_id);
+            ps.setFloat(1, costo);
+            ps.setString(2, observacion);
+            ps.setInt(3, informe_id);
+            ps.setInt(4, equipo_id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -116,13 +108,13 @@ public class M_Detalle_Informe {
         }
     }
     
-    public boolean eliminar(){
+    public boolean eliminar(int informe_id, int equipo_id){
            try {
             db.conectar();
             String sql = "DELETE FROM detalle_informe WHERE informe_id = ? AND equipo_id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.informe_id);
-            ps.setInt(2, this.equipo_id);
+            ps.setInt(1, informe_id);
+            ps.setInt(2, equipo_id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -135,8 +127,8 @@ public class M_Detalle_Informe {
         }
     }
     
-    public ArrayList<M_Detalle_Informe> getDetalles(int informe_id){
-        ArrayList<M_Detalle_Informe> detalles = new ArrayList<>();
+    public ArrayList<ArrayList> getDetalles(int informe_id){
+        ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM detalle_informe WHERE informe_id = ? ORDER BY(equipo_id) DESC";
@@ -145,11 +137,11 @@ public class M_Detalle_Informe {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Detalle_Informe detalle_informe = new M_Detalle_Informe();
-                detalle_informe.setInforme_id(rs.getInt("informe_id"));
-                detalle_informe.setEquipo_id(rs.getInt("equipo_id"));
-                detalle_informe.setCosto(rs.getFloat("costo"));
-                detalle_informe.setObservacion(rs.getString("observacion"));
+                ArrayList detalle_informe = new ArrayList();
+                detalle_informe.add(rs.getInt("informe_id"));
+                detalle_informe.add(rs.getInt("equipo_id"));
+                detalle_informe.add(rs.getFloat("costo"));
+                detalle_informe.add(rs.getString("observacion"));
                 
                 detalles.add(detalle_informe);
             }
@@ -163,8 +155,8 @@ public class M_Detalle_Informe {
         return detalles;
     }
     
-     public ArrayList<M_Detalle_Informe> getDetallesAsc(int informe_id){
-        ArrayList<M_Detalle_Informe> detalles = new ArrayList<>();
+        public ArrayList<ArrayList> getDetallesAsc(int informe_id){
+        ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM detalle_informe WHERE informe_id = ? ORDER BY(equipo_id) ASC";
@@ -173,11 +165,11 @@ public class M_Detalle_Informe {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Detalle_Informe detalle_informe = new M_Detalle_Informe();
-                detalle_informe.setInforme_id(rs.getInt("informe_id"));
-                detalle_informe.setEquipo_id(rs.getInt("equipo_id"));
-                detalle_informe.setCosto(rs.getFloat("costo"));
-                detalle_informe.setObservacion(rs.getString("observacion"));
+                ArrayList detalle_informe = new ArrayList();
+                detalle_informe.add(rs.getInt("informe_id"));
+                detalle_informe.add(rs.getInt("equipo_id"));
+                detalle_informe.add(rs.getFloat("costo"));
+                detalle_informe.add(rs.getString("observacion"));
                 
                 detalles.add(detalle_informe);
             }
@@ -195,7 +187,7 @@ public class M_Detalle_Informe {
         float resultado = 0f;
         try {
             db.conectar();
-            String query = "SELECT * FROM detalle_informe WHERE informe_id = ? ORDER BY(equipo_id) ASC";
+            String query = "SELECT * FROM detalle_informe WHERE informe_id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, informe_id);
             ResultSet rs = ps.executeQuery();

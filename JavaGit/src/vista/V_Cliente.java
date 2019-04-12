@@ -187,7 +187,7 @@ public class V_Cliente extends javax.swing.JFrame {
         txt_telefono.setText("");
     }
     
-    public void actualizarTabla(ArrayList<M_Cliente> clientes){
+    public void actualizarTabla(ArrayList<ArrayList> clientes){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla.setModel(dtm);
         dtm.addColumn("ID");
@@ -198,11 +198,11 @@ public class V_Cliente extends javax.swing.JFrame {
         
         Object[] fila = new Object[5];
         for (int i = 0; i < clientes.size(); i++) {
-            fila[0] = clientes.get(i).getId();
-            fila[1] = clientes.get(i).getNit();
-            fila[2] = clientes.get(i).getNombre();
-            fila[3] = clientes.get(i).getDireccion();
-            fila[4] = clientes.get(i).getTelefono();
+            fila[0] = clientes.get(i).get(0);
+            fila[1] = clientes.get(i).get(1);
+            fila[2] = clientes.get(i).get(2);
+            fila[3] = clientes.get(i).get(3);
+            fila[4] = clientes.get(i).get(4);
             
             dtm.addRow(fila);
         }

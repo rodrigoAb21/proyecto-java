@@ -22,15 +22,6 @@ public class M_Cliente {
     private String telefono;
     private ConexionBD db;
 
-    public M_Cliente(int id, String nit, String nombre, String direccion, String telefono) {
-        this.id = id;
-        this.nit = nit;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        db = new ConexionBD();
-    }
-
     public M_Cliente() {
         this.id = 0;
         this.nit = "";
@@ -83,17 +74,17 @@ public class M_Cliente {
     }
     
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int id, String nit, String nombre, String direccion, String telefono){
         try {
             db.conectar();
             String sql = "INSERT INTO cliente (id, nit, nombre, direccion, " + 
                     "telefono) VALUES (?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
-            ps.setString(2, this.nit);
-            ps.setString(3, this.nombre);
-            ps.setString(4, this.direccion);
-            ps.setString(5, this.telefono);
+            ps.setInt(1, id);
+            ps.setString(2, nit);
+            ps.setString(3, nombre);
+            ps.setString(4, direccion);
+            ps.setString(5, telefono);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -106,7 +97,7 @@ public class M_Cliente {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int id, String nit, String nombre, String direccion, String telefono){
          try {
             db.conectar();
             String sql = "UPDATE cliente SET " + 
@@ -115,11 +106,11 @@ public class M_Cliente {
                     "direccion = ?, " +
                     "telefono = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, this.nit);
-            ps.setString(2, this.nombre);
-            ps.setString(3, this.direccion);
-            ps.setString(4, this.telefono);
-            ps.setInt(5, this.id);
+            ps.setString(1, nit);
+            ps.setString(2, nombre);
+            ps.setString(3, direccion);
+            ps.setString(4, telefono);
+            ps.setInt(5, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -132,12 +123,12 @@ public class M_Cliente {
         }
     }
     
-    public boolean eliminar(){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM cliente WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
+            ps.setInt(1, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -150,8 +141,9 @@ public class M_Cliente {
         }
     }
     
-    public ArrayList<M_Cliente> getClientes(){
-        ArrayList<M_Cliente> clientes = new ArrayList<>();
+    
+    public ArrayList<ArrayList> getClientes(){
+        ArrayList<ArrayList> clientes = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM cliente ORDER BY(id) DESC";
@@ -159,12 +151,12 @@ public class M_Cliente {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Cliente cliente = new M_Cliente();
-                cliente.setId(rs.getInt("id"));
-                cliente.setNit(rs.getString("nit"));
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setDireccion(rs.getString("direccion"));
-                cliente.setTelefono(rs.getString("telefono"));
+                ArrayList cliente = new ArrayList();
+                cliente.add(rs.getInt("id"));
+                cliente.add(rs.getString("nit"));
+                cliente.add(rs.getString("nombre"));
+                cliente.add(rs.getString("direccion"));
+                cliente.add(rs.getString("telefono"));
                 
                 clientes.add(cliente);
             }
@@ -178,8 +170,8 @@ public class M_Cliente {
         return clientes;
     }
     
-     public ArrayList<M_Cliente> getClientesAsc(){
-        ArrayList<M_Cliente> clientes = new ArrayList<>();
+    public ArrayList<ArrayList> getClientesAsc(){
+        ArrayList<ArrayList> clientes = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM cliente ORDER BY(id) ASC";
@@ -187,12 +179,12 @@ public class M_Cliente {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Cliente cliente = new M_Cliente();
-                cliente.setId(rs.getInt("id"));
-                cliente.setNit(rs.getString("nit"));
-                cliente.setNombre(rs.getString("nombre"));
-                cliente.setDireccion(rs.getString("direccion"));
-                cliente.setTelefono(rs.getString("telefono"));
+                ArrayList cliente = new ArrayList();
+                cliente.add(rs.getInt("id"));
+                cliente.add(rs.getString("nit"));
+                cliente.add(rs.getString("nombre"));
+                cliente.add(rs.getString("direccion"));
+                cliente.add(rs.getString("telefono"));
                 
                 clientes.add(cliente);
             }

@@ -43,50 +43,43 @@ public class C_Cliente implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Registrar 
+        
+        // **************** REGISTRAR ****************
         if (e.getSource() == vista_cliente.btn_registrar) {
-            modelo_cliente.setId(Integer.parseInt(vista_cliente.txt_id.getText()));
-            modelo_cliente.setNit(vista_cliente.txt_nit.getText());
-            modelo_cliente.setNombre(vista_cliente.txt_nombre.getText());
-            modelo_cliente.setDireccion(vista_cliente.txt_direccion.getText());
-            modelo_cliente.setTelefono(vista_cliente.txt_telefono.getText());
             
-            if (modelo_cliente.registrar()) {
-                System.out.println("Se registro un cliente");
-            }else {
-                System.out.println("No se pudo registrar un cliente");
-            }
+            modelo_cliente.registrar(
+                    Integer.parseInt(vista_cliente.txt_id.getText()),
+                    vista_cliente.txt_nit.getText(),
+                    vista_cliente.txt_nombre.getText(),
+                    vista_cliente.txt_direccion.getText(),
+                    vista_cliente.txt_telefono.getText()
+            );
+            vista_cliente.actualizarTabla(modelo_cliente.getClientes());
             vista_cliente.limpiarCampos();
-            actualizarTabla();
         } else {
-            // EDITAR
+            
+            // ***************  EDITAR  ****************
             if (e.getSource() == vista_cliente.btn_editar) {
-                modelo_cliente.setId(Integer.parseInt(vista_cliente.txt_id.getText()));
-                modelo_cliente.setNit(vista_cliente.txt_nit.getText());
-                modelo_cliente.setNombre(vista_cliente.txt_nombre.getText());
-                modelo_cliente.setDireccion(vista_cliente.txt_direccion.getText());
-                modelo_cliente.setTelefono(vista_cliente.txt_telefono.getText());
-
-                if (modelo_cliente.editar()) {
-                    System.out.println("Se edito un cliente");
-                }else {
-                    System.out.println("No se pudo editar un cliente");
-                }
+                
+                modelo_cliente.editar(
+                        Integer.parseInt(vista_cliente.txt_id.getText()),
+                        vista_cliente.txt_nit.getText(),
+                        vista_cliente.txt_nombre.getText(),
+                        vista_cliente.txt_direccion.getText(),
+                        vista_cliente.txt_telefono.getText()
+                );
+                vista_cliente.actualizarTabla(modelo_cliente.getClientes());
                 vista_cliente.limpiarCampos();
-                actualizarTabla();
             } else {
-                // ELIMINAR
+                
+                // ***************  ELIMINAR  ****************
                 if (e.getSource() == vista_cliente.btn_eliminar) {
-                    modelo_cliente.setId(Integer.parseInt(vista_cliente.txt_id.getText()));
-
-                    if (modelo_cliente.eliminar()) {
-                        JOptionPane.showMessageDialog(null, "Se elimino un cliente");
-                    }else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar un cliente");
-                    }
-                    vista_cliente.limpiarCampos();
+                    modelo_cliente.eliminar(Integer.parseInt(vista_cliente.txt_id.getText()));
                     actualizarTabla();
+                    vista_cliente.limpiarCampos();
                 } else {
+                    
+                    // ***************  LIMPIAR  ****************
                     if (e.getSource() == vista_cliente.btn_limpiar) {
                         vista_cliente.limpiarCampos();
                     }
