@@ -213,7 +213,7 @@ public class V_Tecnico extends javax.swing.JFrame {
         txt_telefono.setText("");
     }
     
-    public void actualizarTabla(ArrayList<M_Tecnico> tecnicos){
+    public void actualizarTabla(ArrayList<ArrayList> tecnicos){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla.setModel(dtm);
         dtm.addColumn("ID");
@@ -226,13 +226,13 @@ public class V_Tecnico extends javax.swing.JFrame {
         
         Object[] fila = new Object[7];
         for (int i = 0; i < tecnicos.size(); i++) {
-            fila[0] = tecnicos.get(i).getId();
-            fila[1] = tecnicos.get(i).getCi();
-            fila[2] = tecnicos.get(i).getNombre();
-            fila[3] = tecnicos.get(i).getApellido();
-            fila[4] = tecnicos.get(i).getDireccion();
-            fila[5] = tecnicos.get(i).getDireccion();
-            fila[6] = tecnicos.get(i).getTelefono();
+            fila[0] = tecnicos.get(i).get(0);
+            fila[1] = tecnicos.get(i).get(1);
+            fila[2] = tecnicos.get(i).get(2);
+            fila[3] = tecnicos.get(i).get(3);
+            fila[4] = tecnicos.get(i).get(4);
+            fila[5] = tecnicos.get(i).get(5);
+            fila[6] = tecnicos.get(i).get(6);
             
             dtm.addRow(fila);
         }

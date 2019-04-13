@@ -33,56 +33,38 @@ public class C_Herramienta implements ActionListener {
         this.vista_herramienta.btn_limpiar.addActionListener(this);
         
         this.vista_herramienta.setVisible(true);
-        actualizarTabla();
-        
-    }
-    
-    private void actualizarTabla(){
         vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
-    }
         
+    }
     
+        
     @Override
     public void actionPerformed(ActionEvent e) {
          // Registrar 
         if (e.getSource() == vista_herramienta.btn_registrar) {
-            modelo_herramienta.setId(Integer.parseInt(vista_herramienta.txt_id.getText()));
-            modelo_herramienta.setDescripcion(vista_herramienta.txt_descripcion.getText());
-            modelo_herramienta.setMarca(vista_herramienta.txt_marca.getText());
-            
-            if (modelo_herramienta.registrar()) {
-                JOptionPane.showMessageDialog(null, "Se registro un herramienta");
-            }else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar un herramienta");
-            }
+            modelo_herramienta.registrar(
+                    Integer.parseInt(vista_herramienta.txt_id.getText()), 
+                    vista_herramienta.txt_descripcion.getText(), 
+                    vista_herramienta.txt_marca.getText()
+            );
+            vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
             vista_herramienta.limpiarCampos();
-            actualizarTabla();
         } else {
             // EDITAR
             if (e.getSource() == vista_herramienta.btn_editar) {
-                modelo_herramienta.setId(Integer.parseInt(vista_herramienta.txt_id.getText()));
-                modelo_herramienta.setDescripcion(vista_herramienta.txt_descripcion.getText());
-                modelo_herramienta.setMarca(vista_herramienta.txt_marca.getText());
-
-                if (modelo_herramienta.editar()) {
-                    JOptionPane.showMessageDialog(null, "Se edito un herramienta");
-                }else {
-                    JOptionPane.showMessageDialog(null, "No se pudo editar un herramienta");
-                }
+                modelo_herramienta.editar(
+                    Integer.parseInt(vista_herramienta.txt_id.getText()), 
+                    vista_herramienta.txt_descripcion.getText(), 
+                    vista_herramienta.txt_marca.getText()
+                );
+                vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
                 vista_herramienta.limpiarCampos();
-                actualizarTabla();
             } else {
                 // ELIMINAR
                 if (e.getSource() == vista_herramienta.btn_eliminar) {
-                    modelo_herramienta.setId(Integer.parseInt(vista_herramienta.txt_id.getText()));
-
-                    if (modelo_herramienta.eliminar()) {
-                        JOptionPane.showMessageDialog(null, "Se elimino un herramienta");
-                    }else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar un herramienta");
-                    }
+                    modelo_herramienta.eliminar(Integer.parseInt(vista_herramienta.txt_id.getText()));
+                    vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
                     vista_herramienta.limpiarCampos();
-                    actualizarTabla();
                 } else {
                     if (e.getSource() == vista_herramienta.btn_limpiar) {
                         vista_herramienta.limpiarCampos();

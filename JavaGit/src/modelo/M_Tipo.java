@@ -50,14 +50,14 @@ public class M_Tipo {
     
     
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int id, String nombre){
         try {
             db.conectar();
             String sql = "INSERT INTO tipo (id, nombre) " + 
                     " VALUES (?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
-            ps.setString(2, this.nombre);
+            ps.setInt(1, id);
+            ps.setString(2, nombre);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -70,14 +70,14 @@ public class M_Tipo {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int id, String nombre){
          try {
             db.conectar();
             String sql = "UPDATE tipo SET " + 
                     "nombre = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, this.nombre);
-            ps.setInt(2, this.id);
+            ps.setString(1, nombre);
+            ps.setInt(2, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -90,12 +90,12 @@ public class M_Tipo {
         }
     }
     
-    public boolean eliminar(){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM tipo WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
+            ps.setInt(1, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -108,8 +108,8 @@ public class M_Tipo {
         }
     }
     
-    public ArrayList<M_Tipo> getTipos(){
-        ArrayList<M_Tipo> tipos = new ArrayList<>();
+    public ArrayList<ArrayList> getTipos(){
+        ArrayList<ArrayList> tipos = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM tipo ORDER BY(id) DESC";
@@ -117,9 +117,9 @@ public class M_Tipo {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Tipo tipo = new M_Tipo();
-                tipo.setId(rs.getInt("id"));
-                tipo.setNombre(rs.getString("nombre"));
+                ArrayList tipo = new ArrayList();
+                tipo.add(rs.getInt("id"));
+                tipo.add(rs.getString("nombre"));
                 
                 tipos.add(tipo);
             }
@@ -133,8 +133,8 @@ public class M_Tipo {
         return tipos;
     }
     
-        public ArrayList<M_Tipo> getTiposAsc(){
-        ArrayList<M_Tipo> tipos = new ArrayList<>();
+        public ArrayList<ArrayList> getTiposAsc(){
+          ArrayList<ArrayList> tipos = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM tipo ORDER BY(id) ASC";
@@ -142,9 +142,9 @@ public class M_Tipo {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Tipo tipo = new M_Tipo();
-                tipo.setId(rs.getInt("id"));
-                tipo.setNombre(rs.getString("nombre"));
+                ArrayList tipo = new ArrayList();
+                tipo.add(rs.getInt("id"));
+                tipo.add(rs.getString("nombre"));
                 
                 tipos.add(tipo);
             }

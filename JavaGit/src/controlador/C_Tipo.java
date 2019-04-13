@@ -33,54 +33,36 @@ public class C_Tipo implements ActionListener {
         this.vista_tipo.btn_limpiar.addActionListener(this);
         
         this.vista_tipo.setVisible(true);
-        actualizarTabla();
+        vista_tipo.actualizarTabla(modelo_tipo.getTipos());
         
     }
     
-    private void actualizarTabla(){
-        vista_tipo.actualizarTabla(modelo_tipo.getTipos());
-    }
-        
     
     @Override
     public void actionPerformed(ActionEvent e) {
          // Registrar 
         if (e.getSource() == vista_tipo.btn_registrar) {
-            modelo_tipo.setId(Integer.parseInt(vista_tipo.txt_id.getText()));
-            modelo_tipo.setNombre(vista_tipo.txt_nombre.getText());
-            
-            if (modelo_tipo.registrar()) {
-                JOptionPane.showMessageDialog(null, "Se registro un tipo");
-            }else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar un tipo");
-            }
+            modelo_tipo.registrar(
+                Integer.parseInt(vista_tipo.txt_id.getText()),
+                vista_tipo.txt_nombre.getText()
+            );
+            vista_tipo.actualizarTabla(modelo_tipo.getTipos());
             vista_tipo.limpiarCampos();
-            actualizarTabla();
         } else {
             // EDITAR
             if (e.getSource() == vista_tipo.btn_editar) {
-                modelo_tipo.setId(Integer.parseInt(vista_tipo.txt_id.getText()));
-                modelo_tipo.setNombre(vista_tipo.txt_nombre.getText());
-
-                if (modelo_tipo.editar()) {
-                    JOptionPane.showMessageDialog(null, "Se edito un tipo");
-                }else {
-                    JOptionPane.showMessageDialog(null, "No se pudo editar un tipo");
-                }
+                modelo_tipo.editar(
+                    Integer.parseInt(vista_tipo.txt_id.getText()),
+                    vista_tipo.txt_nombre.getText()
+                );
+                vista_tipo.actualizarTabla(modelo_tipo.getTipos());
                 vista_tipo.limpiarCampos();
-                actualizarTabla();
             } else {
                 // ELIMINAR
                 if (e.getSource() == vista_tipo.btn_eliminar) {
-                    modelo_tipo.setId(Integer.parseInt(vista_tipo.txt_id.getText()));
-
-                    if (modelo_tipo.eliminar()) {
-                        JOptionPane.showMessageDialog(null, "Se elimino un tipo");
-                    }else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar un tipo");
-                    }
+                    modelo_tipo.eliminar(Integer.parseInt(vista_tipo.txt_id.getText()));
                     vista_tipo.limpiarCampos();
-                    actualizarTabla();
+                    vista_tipo.actualizarTabla(modelo_tipo.getTipos());
                 } else {
                     if (e.getSource() == vista_tipo.btn_limpiar) {
                         vista_tipo.limpiarCampos();

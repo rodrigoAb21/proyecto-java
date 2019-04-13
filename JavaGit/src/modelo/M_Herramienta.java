@@ -20,13 +20,6 @@ public class M_Herramienta {
     private String marca;
     private ConexionBD db;
 
-    public M_Herramienta(int id, String descripcion, String marca) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.marca = marca;
-        db = new ConexionBD();
-    }
-
     public M_Herramienta() {
         this.id = 0;
         this.descripcion = "";
@@ -62,15 +55,15 @@ public class M_Herramienta {
     
     
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int id, String descripcion, String marca){
         try {
             db.conectar();
             String sql = "INSERT INTO herramienta (id, descripcion, marca) " + 
                     " VALUES (?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
-            ps.setString(2, this.descripcion);
-            ps.setString(3, this.marca);
+            ps.setInt(1, id);
+            ps.setString(2, descripcion);
+            ps.setString(3, marca);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -83,16 +76,16 @@ public class M_Herramienta {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int id, String descripcion, String marca){
          try {
             db.conectar();
             String sql = "UPDATE herramienta SET " + 
                     "descripcion = ?, " +
                     "marca = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, this.descripcion);
-            ps.setString(2, this.marca);
-            ps.setInt(3, this.id);
+            ps.setString(1, descripcion);
+            ps.setString(2, marca);
+            ps.setInt(3, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -105,12 +98,12 @@ public class M_Herramienta {
         }
     }
     
-    public boolean eliminar(){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM herramienta WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
+            ps.setInt(1, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -123,8 +116,8 @@ public class M_Herramienta {
         }
     }
     
-    public ArrayList<M_Herramienta> getHerramientas(){
-        ArrayList<M_Herramienta> herramientas = new ArrayList<>();
+    public ArrayList<ArrayList> getHerramientas(){
+        ArrayList<ArrayList> herramientas = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM herramienta ORDER BY(id) DESC";
@@ -132,10 +125,10 @@ public class M_Herramienta {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Herramienta herramienta = new M_Herramienta();
-                herramienta.setId(rs.getInt("id"));
-                herramienta.setDescripcion(rs.getString("descripcion"));
-                herramienta.setMarca(rs.getString("marca"));
+                ArrayList herramienta = new ArrayList();
+                herramienta.add(rs.getInt("id"));
+                herramienta.add(rs.getString("descripcion"));
+                herramienta.add(rs.getString("marca"));
                 
                 herramientas.add(herramienta);
             }

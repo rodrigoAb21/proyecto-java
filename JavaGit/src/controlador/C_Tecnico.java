@@ -33,63 +33,45 @@ public class C_Tecnico implements ActionListener {
         this.vista_tecnico.btn_limpiar.addActionListener(this);
         
         this.vista_tecnico.setVisible(true);
-        actualizarTabla();
-        
-    }
-    
-    private void actualizarTabla(){
         vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // Registrar 
         if (e.getSource() == vista_tecnico.btn_registrar) {
-            modelo_tecnico.setId(Integer.parseInt(vista_tecnico.txt_id.getText()));
-            modelo_tecnico.setCi(vista_tecnico.txt_ci.getText());
-            modelo_tecnico.setNombre(vista_tecnico.txt_nombre.getText());
-            modelo_tecnico.setApellido(vista_tecnico.txt_apellido.getText());
-            modelo_tecnico.setEspecialidad(vista_tecnico.txt_especialidad.getText());
-            modelo_tecnico.setDireccion(vista_tecnico.txt_direccion.getText());
-            modelo_tecnico.setTelefono(vista_tecnico.txt_telefono.getText());
-            
-            if (modelo_tecnico.registrar()) {
-                JOptionPane.showMessageDialog(null, "Se registro un tecnico");
-            }else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar un tecnico");
-            }
+            modelo_tecnico.registrar(
+                Integer.parseInt(vista_tecnico.txt_id.getText()),
+                vista_tecnico.txt_ci.getText(),
+                vista_tecnico.txt_nombre.getText(),
+                vista_tecnico.txt_apellido.getText(),
+                vista_tecnico.txt_especialidad.getText(),
+                vista_tecnico.txt_direccion.getText(),
+                vista_tecnico.txt_telefono.getText()
+            );
+            vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
             vista_tecnico.limpiarCampos();
-            actualizarTabla();
         } else {
             // EDITAR
             if (e.getSource() == vista_tecnico.btn_editar) {
-                modelo_tecnico.setId(Integer.parseInt(vista_tecnico.txt_id.getText()));
-                modelo_tecnico.setCi(vista_tecnico.txt_ci.getText());
-                modelo_tecnico.setNombre(vista_tecnico.txt_nombre.getText());
-                modelo_tecnico.setApellido(vista_tecnico.txt_apellido.getText());
-                modelo_tecnico.setEspecialidad(vista_tecnico.txt_especialidad.getText());
-                modelo_tecnico.setDireccion(vista_tecnico.txt_direccion.getText());
-                modelo_tecnico.setTelefono(vista_tecnico.txt_telefono.getText());
-
-                if (modelo_tecnico.editar()) {
-                    JOptionPane.showMessageDialog(null, "Se edito un tecnico");
-                }else {
-                    JOptionPane.showMessageDialog(null, "No se pudo editar un tecnico");
-                }
+                modelo_tecnico.editar(
+                    Integer.parseInt(vista_tecnico.txt_id.getText()),
+                    vista_tecnico.txt_ci.getText(),
+                    vista_tecnico.txt_nombre.getText(),
+                    vista_tecnico.txt_apellido.getText(),
+                    vista_tecnico.txt_especialidad.getText(),
+                    vista_tecnico.txt_direccion.getText(),
+                    vista_tecnico.txt_telefono.getText()
+                );
+                vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
                 vista_tecnico.limpiarCampos();
-                actualizarTabla();
             } else {
                 // ELIMINAR
                 if (e.getSource() == vista_tecnico.btn_eliminar) {
-                    modelo_tecnico.setId(Integer.parseInt(vista_tecnico.txt_id.getText()));
-
-                    if (modelo_tecnico.eliminar()) {
-                        JOptionPane.showMessageDialog(null, "Se elimino un tecnico");
-                    }else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar un tecnico");
-                    }
+                    modelo_tecnico.eliminar(Integer.parseInt(vista_tecnico.txt_id.getText()));
+                    vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
                     vista_tecnico.limpiarCampos();
-                    actualizarTabla();
                 } else {
                     if (e.getSource() == vista_tecnico.btn_limpiar) {
                         vista_tecnico.limpiarCampos();

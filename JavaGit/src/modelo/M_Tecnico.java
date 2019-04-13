@@ -24,18 +24,6 @@ public class M_Tecnico {
     private String telefono;
     private ConexionBD db;
 
-    public M_Tecnico(int id, String ci, String nombre, String apellido, 
-            String especialidad, String direccion, String telefono) {
-        this.id = id;
-        this.ci = ci;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.especialidad = especialidad;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        db = new ConexionBD();
-    }
-
     public M_Tecnico() {
         this.id = 0;
         this.ci = "";
@@ -108,19 +96,20 @@ public class M_Tecnico {
     
     
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int id, String ci, String nombre, String apellido, 
+            String especialidad, String direccion, String telefono){
         try {
             db.conectar();
             String sql = "INSERT INTO tecnico (id, ci, nombre, apellido, " + 
                     "especialidad, direccion, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
-            ps.setString(2, this.ci);
-            ps.setString(3, this.nombre);
-            ps.setString(4, this.apellido);
-            ps.setString(5, this.especialidad);
-            ps.setString(6, this.direccion);
-            ps.setString(7, this.telefono);
+            ps.setInt(1, id);
+            ps.setString(2, ci);
+            ps.setString(3, nombre);
+            ps.setString(4, apellido);
+            ps.setString(5, especialidad);
+            ps.setString(6, direccion);
+            ps.setString(7, telefono);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -133,7 +122,8 @@ public class M_Tecnico {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int id, String ci, String nombre, String apellido, 
+            String especialidad, String direccion, String telefono){
          try {
             db.conectar();
             String sql = "UPDATE tecnico SET " + 
@@ -144,13 +134,13 @@ public class M_Tecnico {
                     "direccion = ?, " +
                     "telefono = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, this.ci);
-            ps.setString(2, this.nombre);
-            ps.setString(3, this.apellido);
-            ps.setString(4, this.especialidad);
-            ps.setString(5, this.direccion);
-            ps.setString(6, this.telefono);
-            ps.setInt(7, this.id);
+            ps.setString(1, ci);
+            ps.setString(2, nombre);
+            ps.setString(3, apellido);
+            ps.setString(4, especialidad);
+            ps.setString(5, direccion);
+            ps.setString(6, telefono);
+            ps.setInt(7, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -163,12 +153,12 @@ public class M_Tecnico {
         }
     }
     
-    public boolean eliminar(){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM tecnico WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
+            ps.setInt(1, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -181,8 +171,8 @@ public class M_Tecnico {
         }
     }
     
-    public ArrayList<M_Tecnico> getTecnicos(){
-        ArrayList<M_Tecnico> tecnicos = new ArrayList<>();
+    public ArrayList<ArrayList> getTecnicos(){
+        ArrayList<ArrayList> tecnicos = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM tecnico ORDER BY(id) DESC";
@@ -190,14 +180,14 @@ public class M_Tecnico {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Tecnico tecnico = new M_Tecnico();
-                tecnico.setId(rs.getInt("id"));
-                tecnico.setCi(rs.getString("ci"));
-                tecnico.setNombre(rs.getString("nombre"));
-                tecnico.setApellido(rs.getString("apellido"));
-                tecnico.setEspecialidad(rs.getString("especialidad"));
-                tecnico.setDireccion(rs.getString("direccion"));
-                tecnico.setTelefono(rs.getString("telefono"));
+                ArrayList tecnico = new ArrayList();
+                tecnico.add(rs.getInt("id"));
+                tecnico.add(rs.getString("ci"));
+                tecnico.add(rs.getString("nombre"));
+                tecnico.add(rs.getString("apellido"));
+                tecnico.add(rs.getString("especialidad"));
+                tecnico.add(rs.getString("direccion"));
+                tecnico.add(rs.getString("telefono"));
                 
                 tecnicos.add(tecnico);
             }

@@ -154,7 +154,7 @@ public class V_Herramienta extends javax.swing.JFrame {
         txt_marca.setText("");
     }
     
-    public void actualizarTabla(ArrayList<M_Herramienta> herramientas){
+    public void actualizarTabla(ArrayList<ArrayList> herramientas){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla.setModel(dtm);
         dtm.addColumn("ID");
@@ -163,9 +163,9 @@ public class V_Herramienta extends javax.swing.JFrame {
         
         Object[] fila = new Object[3];
         for (int i = 0; i < herramientas.size(); i++) {
-            fila[0] = herramientas.get(i).getId();
-            fila[1] = herramientas.get(i).getDescripcion();
-            fila[2] = herramientas.get(i).getMarca();
+            fila[0] = herramientas.get(i).get(0);
+            fila[1] = herramientas.get(i).get(1);
+            fila[2] = herramientas.get(i).get(2);
             
             dtm.addRow(fila);
         }

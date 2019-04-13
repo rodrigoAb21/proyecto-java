@@ -356,10 +356,10 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         
     }
     
-    public void cargarSelectorCliente(ArrayList<M_Cliente> clientes) {
+    public void cargarSelectorCliente(ArrayList<ArrayList> clientes) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < clientes.size(); i++) {
-            t.add(clientes.get(i).getId() + ", " + clientes.get(i).getNombre());
+            t.add(clientes.get(i).get(0) + ", " + clientes.get(i).get(2));
         }
         this.selector_cliente.setModel(new DefaultComboBoxModel(t.toArray()));
     }

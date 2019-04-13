@@ -146,7 +146,7 @@ public class V_Tipo extends javax.swing.JFrame {
         txt_nombre.setText("");
     }
     
-    public void actualizarTabla(ArrayList<M_Tipo> tipos){
+    public void actualizarTabla(ArrayList<ArrayList> tipos){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla.setModel(dtm);
         dtm.addColumn("ID");
@@ -154,8 +154,8 @@ public class V_Tipo extends javax.swing.JFrame {
         
         Object[] fila = new Object[2];
         for (int i = 0; i < tipos.size(); i++) {
-            fila[0] = tipos.get(i).getId();
-            fila[1] = tipos.get(i).getNombre();
+            fila[0] = tipos.get(i).get(0);
+            fila[1] = tipos.get(i).get(1);
             
             dtm.addRow(fila);
         }

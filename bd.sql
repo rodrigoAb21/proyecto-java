@@ -1,6 +1,6 @@
-drop database if exists servicio_tecnico;
-create database servicio_tecnico;
-use servicio_tecnico;
+drop database if exists arquitectura;
+create database arquitectura;
+use arquitectura;
 
 -- casos base
 
