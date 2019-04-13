@@ -195,7 +195,7 @@ public class V_Equipo extends javax.swing.JFrame {
         
     }
     
-    public void actualizarTabla(ArrayList<M_Equipo> equipos){
+    public void actualizarTabla(ArrayList<ArrayList> equipos){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla.setModel(dtm);
         dtm.addColumn("ID");
@@ -206,21 +206,21 @@ public class V_Equipo extends javax.swing.JFrame {
         
         Object[] fila = new Object[5];
         for (int i = 0; i < equipos.size(); i++) {
-            fila[0] = equipos.get(i).getId();
-            fila[1] = equipos.get(i).getModelo();
-            fila[2] = equipos.get(i).getNro_serie();
-            fila[3] = equipos.get(i).getMarca();
-            fila[4] = equipos.get(i).getTipo_id();
+            fila[0] = equipos.get(i).get(0);
+            fila[1] = equipos.get(i).get(1);
+            fila[2] = equipos.get(i).get(2);
+            fila[3] = equipos.get(i).get(3);
+            fila[4] = equipos.get(i).get(4);
             
             dtm.addRow(fila);
         }
         
     }
     
-    public void cargarSelector(ArrayList<M_Tipo> tipos) {
+    public void cargarSelector(ArrayList<ArrayList> tipos) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < tipos.size(); i++) {
-            t.add(tipos.get(i).getId() + ", " + tipos.get(i).getNombre());
+            t.add(tipos.get(i).get(0) + ", " + tipos.get(i).get(1));
         }
         this.selector_tipo.setModel(new DefaultComboBoxModel(t.toArray()));
     }

@@ -21,15 +21,6 @@ public class M_Equipo {
     private String marca;
     private int tipo_id;
     private ConexionBD db;
-
-    public M_Equipo(int id, String modelo, String nro_serie, String marca, int tipo_id) {
-        this.id = id;
-        this.modelo = modelo;
-        this.nro_serie = nro_serie;
-        this.marca = marca;
-        this.tipo_id = tipo_id;
-        this.db = new ConexionBD();
-    }
     
     public M_Equipo() {
         this.id = 0;
@@ -84,17 +75,17 @@ public class M_Equipo {
     
     
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int id, String modelo, String nro_serie, String marca, int tipo_id){
         try {
             db.conectar();
             String sql = "INSERT INTO equipo (id, modelo, nro_serie, marca" + 
                     ", tipo_id) VALUES (?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
-            ps.setString(2, this.modelo);
-            ps.setString(3, this.nro_serie);
-            ps.setString(4, this.marca);
-            ps.setInt(5, this.tipo_id);
+            ps.setInt(1, id);
+            ps.setString(2, modelo);
+            ps.setString(3, nro_serie);
+            ps.setString(4, marca);
+            ps.setInt(5, tipo_id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -107,7 +98,7 @@ public class M_Equipo {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int id, String modelo, String nro_serie, String marca, int tipo_id){
          try {
             db.conectar();
             String sql = "UPDATE equipo SET " + 
@@ -116,11 +107,11 @@ public class M_Equipo {
                     "marca = ?, " +
                     "tipo_id = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, this.modelo);
-            ps.setString(2, this.nro_serie);
-            ps.setString(3, this.marca);
-            ps.setInt(4, this.tipo_id);
-            ps.setInt(5, this.id);
+            ps.setString(1, modelo);
+            ps.setString(2, nro_serie);
+            ps.setString(3, marca);
+            ps.setInt(4, tipo_id);
+            ps.setInt(5, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -133,12 +124,12 @@ public class M_Equipo {
         }
     }
     
-    public boolean eliminar(){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM equipo WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
+            ps.setInt(1, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -151,8 +142,8 @@ public class M_Equipo {
         }
     }
     
-    public ArrayList<M_Equipo> getEquipos(){
-        ArrayList<M_Equipo> equipos = new ArrayList<>();
+    public ArrayList<ArrayList> getEquipos(){
+        ArrayList<ArrayList> equipos = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM equipo ORDER BY(id) DESC";
@@ -160,12 +151,12 @@ public class M_Equipo {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Equipo equipo = new M_Equipo();
-                equipo.setId(rs.getInt("id"));
-                equipo.setModelo(rs.getString("modelo"));
-                equipo.setNro_serie(rs.getString("nro_serie"));
-                equipo.setMarca(rs.getString("marca"));
-                equipo.setTipo_id(rs.getInt("tipo_id"));
+                ArrayList equipo = new ArrayList();
+                equipo.add(rs.getInt("id"));
+                equipo.add(rs.getString("modelo"));
+                equipo.add(rs.getString("nro_serie"));
+                equipo.add(rs.getString("marca"));
+                equipo.add(rs.getInt("tipo_id"));
                 
                 equipos.add(equipo);
             }
