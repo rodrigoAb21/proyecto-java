@@ -7,7 +7,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import modelo.M_Tipo;
 import vista.V_Tipo;
 
