@@ -312,7 +312,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         
     }
     
-    public void actualizarTablaInformes(ArrayList<M_Informe_Servicio> equipos){
+    public void actualizarTablaInformes(ArrayList<ArrayList> equipos){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla_servicios.setModel(dtm);
         dtm.addColumn("ID");
@@ -324,19 +324,19 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         
         Object[] fila = new Object[6];
         for (int i = 0; i < equipos.size(); i++) {
-            fila[0] = equipos.get(i).getId();
-            fila[1] = equipos.get(i).getFecha_recepcion();
-            fila[2] = equipos.get(i).getFecha_finalizacion();
-            fila[3] = equipos.get(i).getCosto_total();
-            fila[4] = equipos.get(i).getEstado();
-            fila[5] = equipos.get(i).getCliente_id();
+            fila[0] = equipos.get(i).get(0);
+            fila[1] = equipos.get(i).get(1);
+            fila[2] = equipos.get(i).get(2);
+            fila[3] = equipos.get(i).get(3);
+            fila[4] = equipos.get(i).get(4);
+            fila[5] = equipos.get(i).get(5);
             
             dtm.addRow(fila);
         }
         
     }
     
-     public void actualizarTablaDetalle(ArrayList<M_Detalle_Informe> detalles){
+     public void actualizarTablaDetalle(ArrayList<ArrayList> detalles){
         DefaultTableModel dfm2 = new DefaultTableModel();
         tabla_detalle.setModel(dfm2);
         dfm2.addColumn("INFORME_ID");
@@ -346,10 +346,10 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         
         Object[] fila = new Object[4];
         for (int i = 0; i < detalles.size(); i++) {
-            fila[0] = detalles.get(i).getInforme_id();
-            fila[1] = detalles.get(i).getEquipo_id();
-            fila[2] = detalles.get(i).getCosto();
-            fila[3] = detalles.get(i).getObservacion();
+            fila[0] = detalles.get(i).get(0);
+            fila[1] = detalles.get(i).get(1);
+            fila[2] = detalles.get(i).get(2);
+            fila[3] = detalles.get(i).get(3);
             
             dfm2.addRow(fila);
         }
@@ -364,10 +364,10 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         this.selector_cliente.setModel(new DefaultComboBoxModel(t.toArray()));
     }
     
-    public void cargarSelectorEquipo(ArrayList<M_Equipo> equipos) {
+    public void cargarSelectorEquipo(ArrayList<ArrayList> equipos) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < equipos.size(); i++) {
-            t.add(equipos.get(i).getId() + ", " + equipos.get(i).getNro_serie());
+            t.add(equipos.get(i).get(0) + ", " + equipos.get(i).get(1));
         }
         this.selector_equipo.setModel(new DefaultComboBoxModel(t.toArray()));
     }

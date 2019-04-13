@@ -94,18 +94,19 @@ public class M_Informe_Servicio {
        
     
     // METODOS
-    public boolean registrar(){
+    public boolean registrar(int id, String fecha_recepcion, String fecha_finalizacion, 
+            float costo_total, String estado, int cliente_id){
         try {
             db.conectar();
             String sql = "INSERT INTO informe_servicio (id, fecha_recepcion, fecha_finalizacion, " + 
                     "costo_total, estado, cliente_id) VALUES (?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
-            ps.setString(2, this.fecha_recepcion);
-            ps.setString(3, this.fecha_finalizacion);
-            ps.setFloat(4, this.costo_total);
-            ps.setString(5, this.estado);
-            ps.setInt(6, this.cliente_id);
+            ps.setInt(1, id);
+            ps.setString(2, fecha_recepcion);
+            ps.setString(3, fecha_finalizacion);
+            ps.setFloat(4, costo_total);
+            ps.setString(5, estado);
+            ps.setInt(6, cliente_id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -118,7 +119,7 @@ public class M_Informe_Servicio {
         }
     }
     
-    public boolean editar(){
+    public boolean editar(int id, String fecha_recepcion, String fecha_finalizacion, int cliente_id){
          try {
             db.conectar();
             String sql = "UPDATE informe_servicio SET " + 
@@ -126,10 +127,10 @@ public class M_Informe_Servicio {
                     "fecha_finalizacion = ?, " +
                     "cliente_id = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, this.fecha_recepcion);
-            ps.setString(2, this.fecha_finalizacion);
-            ps.setInt(3, this.cliente_id);
-            ps.setInt(4, this.id);
+            ps.setString(1, fecha_recepcion);
+            ps.setString(2, fecha_finalizacion);
+            ps.setInt(3, cliente_id);
+            ps.setInt(4, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -142,12 +143,12 @@ public class M_Informe_Servicio {
         }
     }
     
-    public boolean eliminar(){
+    public boolean anular(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM informe_servicio WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, this.id);
+            ps.setInt(1, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -160,8 +161,8 @@ public class M_Informe_Servicio {
         }
     }
     
-    public ArrayList<M_Informe_Servicio> getInformes(){
-        ArrayList<M_Informe_Servicio> informe_servicios = new ArrayList<>();
+    public ArrayList<ArrayList> getInformes(){
+        ArrayList<ArrayList> informe_servicios = new ArrayList();
         try {
             db.conectar();
             String query = "SELECT * FROM informe_servicio ORDER BY(id) DESC";
@@ -169,13 +170,13 @@ public class M_Informe_Servicio {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                M_Informe_Servicio informe_servicio = new M_Informe_Servicio();
-                informe_servicio.setId(rs.getInt("id"));
-                informe_servicio.setFecha_recepcion(rs.getString("fecha_recepcion"));
-                informe_servicio.setFecha_finalizacion(rs.getString("fecha_finalizacion"));
-                informe_servicio.setCosto_total(rs.getFloat("costo_total"));
-                informe_servicio.setEstado(rs.getString("estado"));
-                informe_servicio.setCliente_id(rs.getInt("cliente_id"));
+                ArrayList informe_servicio = new ArrayList();
+                informe_servicio.add(rs.getInt("id"));
+                informe_servicio.add(rs.getString("fecha_recepcion"));
+                informe_servicio.add(rs.getString("fecha_finalizacion"));
+                informe_servicio.add(rs.getFloat("costo_total"));
+                informe_servicio.add(rs.getString("estado"));
+                informe_servicio.add(rs.getInt("cliente_id"));
                 
                 informe_servicios.add(informe_servicio);
             }

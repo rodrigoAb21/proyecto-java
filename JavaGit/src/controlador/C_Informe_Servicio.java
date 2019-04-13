@@ -83,74 +83,65 @@ public class C_Informe_Servicio implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista_informe_servicio.btn_registrar) {
             // REGISTRAR
-            modelo_informe_servicio.setId(Integer.parseInt(vista_informe_servicio.txt_id.getText()));
-            modelo_informe_servicio.setFecha_recepcion(vista_informe_servicio.txt_fecha_recepcion.getText());
-            modelo_informe_servicio.setFecha_finalizacion(vista_informe_servicio.txt_fecha_finalizacion.getText());
-            modelo_informe_servicio.setCosto_total(0f);
-            modelo_informe_servicio.setEstado("Activo");
-
-            String cliente[] = vista_informe_servicio.selector_cliente.getSelectedItem().toString().split(",");
-            modelo_informe_servicio.setCliente_id(Integer.parseInt(cliente[0]));
-
-            if (modelo_informe_servicio.registrar()) {
-                JOptionPane.showMessageDialog(null, "Se registro un equipo");
-            }else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar un equipo");
-            }
+            modelo_informe_servicio.registrar(
+                    Integer.parseInt(vista_informe_servicio.txt_id.getText()),
+                    vista_informe_servicio.txt_fecha_recepcion.getText(),
+                    vista_informe_servicio.txt_fecha_finalizacion.getText(),
+                    0f,
+                    "Activo",
+                    Integer.parseInt(vista_informe_servicio.selector_cliente.getSelectedItem().toString().split(",")[0])
+            );
             vista_informe_servicio.limpiarCampos();
             actualizarVista();
+            
+            
         } else if (e.getSource() == vista_informe_servicio.btn_editar) {
             // EDITAR
-            modelo_informe_servicio.setId(Integer.parseInt(vista_informe_servicio.txt_id.getText()));
-            modelo_informe_servicio.setFecha_recepcion(vista_informe_servicio.txt_fecha_recepcion.getText());
-            modelo_informe_servicio.setFecha_finalizacion(vista_informe_servicio.txt_fecha_finalizacion.getText());
-            modelo_informe_servicio.setEstado(vista_informe_servicio.txt_estado.getText());
-
-            String tipo[] = vista_informe_servicio.selector_cliente.getSelectedItem().toString().split(",");
-            modelo_informe_servicio.setCliente_id(Integer.parseInt(tipo[0]));
-
-            if (modelo_informe_servicio.editar()) {
-                JOptionPane.showMessageDialog(null, "Se edito un equipo");
-            }else {
-                JOptionPane.showMessageDialog(null, "No se pudo editar un equipo");
-            }
+            modelo_informe_servicio.editar(
+                    Integer.parseInt(vista_informe_servicio.txt_id.getText()),
+                    vista_informe_servicio.txt_fecha_recepcion.getText(),
+                    vista_informe_servicio.txt_fecha_finalizacion.getText(),
+                    Integer.parseInt(vista_informe_servicio.selector_cliente.getSelectedItem().toString().split(",")[0])
+            );
+            
             vista_informe_servicio.limpiarCampos();
             actualizarVista();
+            
+            
         } else if (e.getSource() == vista_informe_servicio.btn_eliminar) {
             // ELIMINAR
-            modelo_informe_servicio.setId(Integer.parseInt(vista_informe_servicio.txt_id.getText()));
-
-            if (modelo_informe_servicio.eliminar()) {
-                JOptionPane.showMessageDialog(null, "Se elimino un equipo");
-            }else {
-                JOptionPane.showMessageDialog(null, "No se pudo eliminar un equipo");
-            }
+            modelo_informe_servicio.anular(Integer.parseInt(vista_informe_servicio.txt_id.getText()));
             vista_informe_servicio.limpiarCampos();
             actualizarVista();
+            
+            
         } else if (e.getSource() == vista_informe_servicio.btn_limpiar) {
             // LIMPIAR
             vista_informe_servicio.limpiarCampos();
+            
+            
         } else if (e.getSource() == vista_informe_servicio.btn_agregar) {
             // AGREGAR DETALLE
             // Se debe registrar un nuevo detalle servicio y actualizar tabla detalle
-            modelo_detalle.setInforme_id(this.informe_seleccionado);
-            String equipo[] = vista_informe_servicio.selector_equipo.getSelectedItem().toString().split(",");
-            modelo_detalle.setEquipo_id(Integer.parseInt(equipo[0]));
-
-            modelo_detalle.setCosto(0f);
-            modelo_detalle.setObservacion(vista_informe_servicio.txt_observacion.getText().toString());
-            modelo_detalle.registrar();
+            
+            modelo_detalle.registrar(
+                    this.informe_seleccionado,
+                    Integer.parseInt(vista_informe_servicio.selector_equipo.getSelectedItem().toString().split(",")[0]),
+                    0f,
+                    vista_informe_servicio.txt_observacion.getText().toString()        
+            );
+            
             recargarDetalle(this.informe_seleccionado);
+            
+            
         } else if (e.getSource() == vista_informe_servicio.btn_quitar) {
             // QUITAR DETALLE
             int fila = vista_informe_servicio.tabla_detalle.getSelectedRow();
             if (fila >= 0) {
-                int equipo_id = Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 1).toString());
-                modelo_detalle.setInforme_id(this.informe_seleccionado);
-                modelo_detalle.setEquipo_id(equipo_id);
-                modelo_detalle.eliminar();
+                modelo_detalle.eliminar(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 1).toString()));
                 recargarDetalle(informe_seleccionado);
             }
+            
         } else if (e.getSource() == vista_informe_servicio.btn_cargar_detalle) {
             // CARGAR DETALLE
             cargarDetalle();
