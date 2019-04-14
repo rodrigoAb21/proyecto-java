@@ -39,35 +39,39 @@ public class C_Tipo implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-         // Registrar 
         if (e.getSource() == vista_tipo.btn_registrar) {
+            // Registrar 
             modelo_tipo.registrar(
                 Integer.parseInt(vista_tipo.txt_id.getText()),
                 vista_tipo.txt_nombre.getText()
             );
+            
             vista_tipo.actualizarTabla(modelo_tipo.getTipos());
             vista_tipo.limpiarCampos();
-        } else {
+            
+            
+        } else if (e.getSource() == vista_tipo.btn_editar){
             // EDITAR
-            if (e.getSource() == vista_tipo.btn_editar) {
-                modelo_tipo.editar(
+            modelo_tipo.editar(
                     Integer.parseInt(vista_tipo.txt_id.getText()),
                     vista_tipo.txt_nombre.getText()
                 );
-                vista_tipo.actualizarTabla(modelo_tipo.getTipos());
-                vista_tipo.limpiarCampos();
-            } else {
-                // ELIMINAR
-                if (e.getSource() == vista_tipo.btn_eliminar) {
-                    modelo_tipo.eliminar(Integer.parseInt(vista_tipo.txt_id.getText()));
-                    vista_tipo.limpiarCampos();
-                    vista_tipo.actualizarTabla(modelo_tipo.getTipos());
-                } else {
-                    if (e.getSource() == vista_tipo.btn_limpiar) {
-                        vista_tipo.limpiarCampos();
-                    }
-                }
-            }
+            
+            vista_tipo.actualizarTabla(modelo_tipo.getTipos());
+            vista_tipo.limpiarCampos();
+            
+            
+        }else if (e.getSource() == vista_tipo.btn_eliminar){
+            // ELIMINAR
+            modelo_tipo.eliminar(Integer.parseInt(vista_tipo.txt_id.getText()));
+            
+            vista_tipo.actualizarTabla(modelo_tipo.getTipos());
+            vista_tipo.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_tipo.btn_limpiar) {
+            // LIMPIAR
+            vista_tipo.limpiarCampos();
         }
     }
     

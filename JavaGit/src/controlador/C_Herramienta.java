@@ -39,38 +39,44 @@ public class C_Herramienta implements ActionListener {
         
     @Override
     public void actionPerformed(ActionEvent e) {
-         // Registrar 
+        
         if (e.getSource() == vista_herramienta.btn_registrar) {
+            // **************** REGISTRAR ****************    
             modelo_herramienta.registrar(
                     Integer.parseInt(vista_herramienta.txt_id.getText()), 
                     vista_herramienta.txt_descripcion.getText(), 
                     vista_herramienta.txt_marca.getText()
             );
+            
             vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
             vista_herramienta.limpiarCampos();
-        } else {
-            // EDITAR
-            if (e.getSource() == vista_herramienta.btn_editar) {
-                modelo_herramienta.editar(
+            
+            
+        } else if (e.getSource() == vista_herramienta.btn_editar) {
+            // **************** EDITAR ****************
+            modelo_herramienta.editar(
                     Integer.parseInt(vista_herramienta.txt_id.getText()), 
                     vista_herramienta.txt_descripcion.getText(), 
                     vista_herramienta.txt_marca.getText()
                 );
-                vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
-                vista_herramienta.limpiarCampos();
-            } else {
-                // ELIMINAR
-                if (e.getSource() == vista_herramienta.btn_eliminar) {
-                    modelo_herramienta.eliminar(Integer.parseInt(vista_herramienta.txt_id.getText()));
-                    vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
-                    vista_herramienta.limpiarCampos();
-                } else {
-                    if (e.getSource() == vista_herramienta.btn_limpiar) {
-                        vista_herramienta.limpiarCampos();
-                    }
-                }
-            }
+            
+            vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
+            vista_herramienta.limpiarCampos();
+
+            
+        } else if (e.getSource() == vista_herramienta.btn_eliminar) {
+            // **************** ELIMINAR ****************
+            modelo_herramienta.eliminar(Integer.parseInt(vista_herramienta.txt_id.getText()));
+            
+            vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
+            vista_herramienta.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_herramienta.btn_limpiar) {
+            //  **************** LIMPIAR ****************
+            vista_herramienta.limpiarCampos();
         }
+        
     }
     
     public static void main(String[] args) {

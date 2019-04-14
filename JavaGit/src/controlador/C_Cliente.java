@@ -38,10 +38,9 @@ public class C_Cliente implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        // **************** REGISTRAR ****************
+                
         if (e.getSource() == vista_cliente.btn_registrar) {
-            
+            // **************** REGISTRAR ****************    
             modelo_cliente.registrar(
                     Integer.parseInt(vista_cliente.txt_id.getText()),
                     vista_cliente.txt_nit.getText(),
@@ -49,38 +48,38 @@ public class C_Cliente implements ActionListener {
                     vista_cliente.txt_direccion.getText(),
                     vista_cliente.txt_telefono.getText()
             );
+            
             vista_cliente.actualizarTabla(modelo_cliente.getClientes());
             vista_cliente.limpiarCampos();
-        } else {
             
-            // ***************  EDITAR  ****************
-            if (e.getSource() == vista_cliente.btn_editar) {
-                
-                modelo_cliente.editar(
-                        Integer.parseInt(vista_cliente.txt_id.getText()),
-                        vista_cliente.txt_nit.getText(),
-                        vista_cliente.txt_nombre.getText(),
-                        vista_cliente.txt_direccion.getText(),
-                        vista_cliente.txt_telefono.getText()
-                );
-                vista_cliente.actualizarTabla(modelo_cliente.getClientes());
-                vista_cliente.limpiarCampos();
-            } else {
-                
-                // ***************  ELIMINAR  ****************
-                if (e.getSource() == vista_cliente.btn_eliminar) {
-                    modelo_cliente.eliminar(Integer.parseInt(vista_cliente.txt_id.getText()));
-                    vista_cliente.actualizarTabla(modelo_cliente.getClientes());
-                    vista_cliente.limpiarCampos();
-                } else {
-                    
-                    // ***************  LIMPIAR  ****************
-                    if (e.getSource() == vista_cliente.btn_limpiar) {
-                        vista_cliente.limpiarCampos();
-                    }
-                }
-            }
+            
+        } else if (e.getSource() == vista_cliente.btn_editar) {
+            // **************** EDITAR ****************
+            modelo_cliente.editar(
+                    Integer.parseInt(vista_cliente.txt_id.getText()),
+                    vista_cliente.txt_nit.getText(),
+                    vista_cliente.txt_nombre.getText(),
+                    vista_cliente.txt_direccion.getText(),
+                    vista_cliente.txt_telefono.getText()
+            );
+            
+            vista_cliente.actualizarTabla(modelo_cliente.getClientes());
+            vista_cliente.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_cliente.btn_eliminar) {
+            // **************** ELIMINAR ****************
+            modelo_cliente.eliminar(Integer.parseInt(vista_cliente.txt_id.getText()));
+            
+            vista_cliente.actualizarTabla(modelo_cliente.getClientes());
+            vista_cliente.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_cliente.btn_limpiar) {
+            // **************** LIMPIAR ****************
+            vista_cliente.limpiarCampos();
         }
+            
         
     }
     

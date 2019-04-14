@@ -38,8 +38,9 @@ public class C_Tecnico implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Registrar 
+        
         if (e.getSource() == vista_tecnico.btn_registrar) {
+            // **************** REGISTRAR ****************
             modelo_tecnico.registrar(
                 Integer.parseInt(vista_tecnico.txt_id.getText()),
                 vista_tecnico.txt_ci.getText(),
@@ -49,34 +50,38 @@ public class C_Tecnico implements ActionListener {
                 vista_tecnico.txt_direccion.getText(),
                 vista_tecnico.txt_telefono.getText()
             );
+            
             vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
             vista_tecnico.limpiarCampos();
-        } else {
-            // EDITAR
-            if (e.getSource() == vista_tecnico.btn_editar) {
-                modelo_tecnico.editar(
-                    Integer.parseInt(vista_tecnico.txt_id.getText()),
-                    vista_tecnico.txt_ci.getText(),
-                    vista_tecnico.txt_nombre.getText(),
-                    vista_tecnico.txt_apellido.getText(),
-                    vista_tecnico.txt_especialidad.getText(),
-                    vista_tecnico.txt_direccion.getText(),
-                    vista_tecnico.txt_telefono.getText()
-                );
-                vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
-                vista_tecnico.limpiarCampos();
-            } else {
-                // ELIMINAR
-                if (e.getSource() == vista_tecnico.btn_eliminar) {
-                    modelo_tecnico.eliminar(Integer.parseInt(vista_tecnico.txt_id.getText()));
-                    vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
-                    vista_tecnico.limpiarCampos();
-                } else {
-                    if (e.getSource() == vista_tecnico.btn_limpiar) {
-                        vista_tecnico.limpiarCampos();
-                    }
-                }
-            }
+            
+            
+        } else if (e.getSource() == vista_tecnico.btn_editar) {
+            // **************** EDITAR ****************
+            modelo_tecnico.editar(
+                Integer.parseInt(vista_tecnico.txt_id.getText()),
+                vista_tecnico.txt_ci.getText(),
+                vista_tecnico.txt_nombre.getText(),
+                vista_tecnico.txt_apellido.getText(),
+                vista_tecnico.txt_especialidad.getText(),
+                vista_tecnico.txt_direccion.getText(),
+                vista_tecnico.txt_telefono.getText()
+            );
+
+            vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
+            vista_tecnico.limpiarCampos();
+                            
+            
+        } else if (e.getSource() == vista_tecnico.btn_eliminar) {
+            // **************** ELIMINAR ****************
+            modelo_tecnico.eliminar(Integer.parseInt(vista_tecnico.txt_id.getText()));
+            
+            vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
+            vista_tecnico.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_tecnico.btn_limpiar) {
+            // **************** LIMPIAR ****************
+            vista_tecnico.limpiarCampos();
         }
         
     }

@@ -7,7 +7,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import modelo.M_Equipo;
 import modelo.M_Tipo;
 import vista.V_Equipo;
@@ -46,8 +45,8 @@ public class C_Equipo implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Registrar 
         if (e.getSource() == vista_equipo.btn_registrar) {
+            // **************** REGISTRAR ****************    
             modelo_equipo.registrar(
                 Integer.parseInt(vista_equipo.txt_id.getText()),
                 vista_equipo.txt_modelo.getText(),
@@ -60,36 +59,36 @@ public class C_Equipo implements ActionListener {
             vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
             vista_equipo.limpiarCampos();
             
-        } else {
-            // EDITAR
-            if (e.getSource() == vista_equipo.btn_editar) {
-                modelo_equipo.editar(
-                    Integer.parseInt(vista_equipo.txt_id.getText()),
-                    vista_equipo.txt_modelo.getText(),
-                    vista_equipo.txt_nro_serie.getText(),
-                    vista_equipo.txt_marca.getText(),
-                    Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split(",")[0])
-                );
-                
-                vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
-                vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
-                vista_equipo.limpiarCampos();
-        vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
-            } else {
-                // ELIMINAR
-                if (e.getSource() == vista_equipo.btn_eliminar) {
-                    modelo_equipo.eliminar(Integer.parseInt(vista_equipo.txt_id.getText()));
+            
+        } else if (e.getSource() == vista_equipo.btn_editar) {
+            // **************** EDITAR ****************
+            modelo_equipo.editar(
+                Integer.parseInt(vista_equipo.txt_id.getText()),
+                vista_equipo.txt_modelo.getText(),
+                vista_equipo.txt_nro_serie.getText(),
+                vista_equipo.txt_marca.getText(),
+                Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split(",")[0])
+            );
+
+            vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
+            vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
+            vista_equipo.limpiarCampos();
+
+            
+        } else if (e.getSource() == vista_equipo.btn_eliminar) {
+            // **************** ELIMINAR ****************
+            modelo_equipo.eliminar(Integer.parseInt(vista_equipo.txt_id.getText()));
                     
-                    vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
-                    vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
-                    vista_equipo.limpiarCampos();
-                } else {
-                    if (e.getSource() == vista_equipo.btn_limpiar) {
-                        vista_equipo.limpiarCampos();
-                    }
-                }
-            }
+            vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
+            vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
+            vista_equipo.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_equipo.btn_limpiar) {
+            //  **************** LIMPIAR ****************
+            vista_equipo.limpiarCampos();
         }
+        
         
     }
     
