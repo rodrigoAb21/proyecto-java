@@ -111,5 +111,39 @@ CREATE TABLE detalle_informe (
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-UPDATE detalle_informe set costo = 22.0 where equipo_id = 5;
+CREATE TABLE trabajo (
+    id INT NOT NULL,
+    fecha_inicio VARCHAR(20) NOT NULL,
+    fecha_fin VARCHAR(20) NOT NULL,
+    costo FLOAT NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+    tecnico_id INT NOT NULL,
+    informe_id INT NOT NULL,
+    equipo_id INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (tecnico_id)
+        REFERENCES tecnico (id)
+        ON UPDATE CASCADE,
+    FOREIGN KEY (informe_id)
+        REFERENCES detalle_informe (informe_id)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (equipo_id)
+        REFERENCES detalle_informe (equipo_id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE detalle_trabajo (
+    trabajo_id INT NOT NULL,
+    herramienta_id INT NOT NULL,
+    PRIMARY KEY (trabajo_id , herramienta_id),
+    FOREIGN KEY (trabajo_id)
+        REFERENCES trabajo (id)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (herramienta_id)
+        REFERENCES herramienta (id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
 
