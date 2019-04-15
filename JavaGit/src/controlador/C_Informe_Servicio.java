@@ -50,6 +50,7 @@ public class C_Informe_Servicio implements ActionListener {
         // Botones Detalle
         this.vista_informe_servicio.btn_agregar.addActionListener(this);
         this.vista_informe_servicio.btn_quitar.addActionListener(this);
+        this.vista_informe_servicio.btn_trabajos.addActionListener(this);
         
         // Selectores
         this.vista_informe_servicio.selector_cliente.addActionListener(this);
@@ -144,6 +145,12 @@ public class C_Informe_Servicio implements ActionListener {
         } else if (e.getSource() == vista_informe_servicio.btn_cargar_detalle) {
             // CARGAR DETALLE
             cargarDetalle();
+        } else if (e.getSource() == vista_informe_servicio.btn_trabajos){
+            int fila = vista_informe_servicio.tabla_detalle.getSelectedRow();
+            if (fila >= 0) {
+                new C_Trabajo(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 1).toString()));
+            }
+            vista_informe_servicio.dispose();
         }
     }
     

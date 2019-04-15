@@ -62,7 +62,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         tabla_detalle = new javax.swing.JTable();
         btn_agregar = new javax.swing.JButton();
         btn_quitar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_trabajos = new javax.swing.JButton();
         btn_cargar_detalle = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txt_fecha_finalizacion = new javax.swing.JTextField();
@@ -135,7 +135,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
 
         btn_quitar.setText("QUITAR");
 
-        jButton3.setText("GESTIONAR TRABAJOS");
+        btn_trabajos.setText("GESTIONAR TRABAJOS");
 
         btn_cargar_detalle.setText("CARGAR DETALLE");
 
@@ -166,7 +166,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                                     .addComponent(selector_equipo, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(268, 268, 268)
-                                .addComponent(jButton3)))
+                                .addComponent(btn_trabajos)))
                         .addGap(0, 247, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -251,7 +251,6 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                             .addComponent(btn_eliminar)
                             .addComponent(btn_limpiar))
                         .addGap(2, 2, 2)))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -266,7 +265,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(btn_trabajos)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -417,7 +416,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
     public javax.swing.JButton btn_limpiar;
     public javax.swing.JButton btn_quitar;
     public javax.swing.JButton btn_registrar;
-    private javax.swing.JButton jButton3;
+    public javax.swing.JButton btn_trabajos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

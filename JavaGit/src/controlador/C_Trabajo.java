@@ -61,7 +61,7 @@ public class C_Trabajo implements ActionListener {
         
         this.vista_trabajo.setVisible(true);
         
-        vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getInformes());
+        vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
         vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
         vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
         
@@ -69,13 +69,13 @@ public class C_Trabajo implements ActionListener {
     }
     
     private void actualizarVista(){
-        vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getInformes());
+        vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
         vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
         vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
     }
     
     private void actualizarTablaTrabajos(){
-        vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getInformes());
+        vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
     }
 
     @Override
@@ -86,42 +86,49 @@ public class C_Trabajo implements ActionListener {
                     Integer.parseInt(vista_trabajo.txt_id.getText()),
                     vista_trabajo.txt_fecha_inicio.getText(),
                     vista_trabajo.txt_fecha_fin.getText(),
-                    Integer.parseInt(vista_trabajo.txt_costo.getText()),
+                    Float.parseFloat(vista_trabajo.txt_costo.getText()),
                     vista_trabajo.txt_descripcion.getText(),
                     Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split(",")[0]),
                     this.informe_id,
                     this.equipo_id
             );
-            vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getInformes());
+            vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
             vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
             vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
             vista_trabajo.limpiarCampos();
             
             
-//        } else if (e.getSource() == vista_trabajo.btn_editar) {
-//            // EDITAR
-//            modelo_trabajo.editar(
-//                    Integer.parseInt(vista_trabajo.txt_id.getText()),
-//                    vista_trabajo.txt_fecha_inicio.getText(),
-//                    vista_trabajo.txt_fecha_fin.getText(),
-//                    Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split(",")[0])
-//            );
-//            
-//            vista_trabajo.limpiarCampos();
-//            actualizarVista();
-//            
-//            
-//        } else if (e.getSource() == vista_trabajo.btn_eliminar) {
-//            // ELIMINAR
-//            modelo_trabajo.anular(Integer.parseInt(vista_trabajo.txt_id.getText()));
-//            vista_trabajo.limpiarCampos();
-//            actualizarVista();
-//            
-//            
-//        } else if (e.getSource() == vista_trabajo.btn_limpiar) {
-//            // LIMPIAR
-//            vista_trabajo.limpiarCampos();
-//            
+        } else if (e.getSource() == vista_trabajo.btn_editar) {
+            // EDITAR
+            modelo_trabajo.editar(
+                    Integer.parseInt(vista_trabajo.txt_id.getText()),
+                    vista_trabajo.txt_fecha_inicio.getText(),
+                    vista_trabajo.txt_fecha_fin.getText(),
+                    Float.parseFloat(vista_trabajo.txt_costo.getText()),
+                    vista_trabajo.txt_descripcion.getText(),
+                    Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split(",")[0]),
+                    this.informe_id,
+                    this.equipo_id
+            );
+            vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_trabajo.btn_eliminar) {
+            // ELIMINAR
+            modelo_trabajo.eliminar(Integer.parseInt(vista_trabajo.txt_id.getText()));
+            vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.limpiarCampos();
+            
+            
+        } else if (e.getSource() == vista_trabajo.btn_limpiar) {
+            // LIMPIAR
+            vista_trabajo.limpiarCampos();
+            
 //            
 //        } else if (e.getSource() == vista_trabajo.btn_agregar) {
 //            // AGREGAR DETALLE
@@ -171,9 +178,6 @@ public class C_Trabajo implements ActionListener {
 //        }
 //        
 //    }
-    
-    public static void main(String[] args) {
-        C_Trabajo cc = new C_Trabajo(1,1);
-    }
+
     
 }

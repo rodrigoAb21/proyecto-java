@@ -169,7 +169,7 @@ public class M_Trabajo {
         }
     }
     
-    public boolean anular(int id){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM trabajo WHERE id = ?";
@@ -187,11 +187,13 @@ public class M_Trabajo {
         }
     }
     
-    public ArrayList<ArrayList> getInformes(){
+    public ArrayList<ArrayList> getTrabajos(int informe_id, int equipo_id){
         ArrayList<ArrayList> trabajos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM trabajo ORDER BY(id) DESC";
+            String query = "SELECT * FROM trabajo WHERE informe_id = " + 
+                    informe_id + " and equipo_id = " + equipo_id 
+                    + " ORDER BY(id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
