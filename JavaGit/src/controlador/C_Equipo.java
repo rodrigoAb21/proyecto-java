@@ -36,6 +36,7 @@ public class C_Equipo implements ActionListener {
         this.vista_equipo.selector_tipo.addActionListener(this);
         
         
+        this.vista_equipo.setDefaultCloseOperation(2);
         this.vista_equipo.setVisible(true);
         vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
         vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());

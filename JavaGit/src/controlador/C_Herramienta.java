@@ -31,6 +31,7 @@ public class C_Herramienta implements ActionListener {
         this.vista_herramienta.btn_eliminar.addActionListener(this);
         this.vista_herramienta.btn_limpiar.addActionListener(this);
         
+        this.vista_herramienta.setDefaultCloseOperation(2);
         this.vista_herramienta.setVisible(true);
         vista_herramienta.actualizarTabla(modelo_herramienta.getHerramientas());
         

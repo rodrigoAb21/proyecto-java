@@ -57,6 +57,7 @@ public class C_Informe_Servicio implements ActionListener {
         this.vista_informe_servicio.selector_equipo.addActionListener(this);
         
         
+        this.vista_informe_servicio.setDefaultCloseOperation(2);
         this.vista_informe_servicio.setVisible(true);
         this.vista_informe_servicio.txt_costo_total.setEditable(false);
         this.vista_informe_servicio.txt_estado.setEditable(false);
