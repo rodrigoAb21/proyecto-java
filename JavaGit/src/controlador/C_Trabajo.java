@@ -58,7 +58,8 @@ public class C_Trabajo implements ActionListener {
         this.vista_trabajo.selector_tecnico.addActionListener(this);
         this.vista_trabajo.selector_herramienta.addActionListener(this);
         
-        
+        // JFrame.DISPOSE = 2
+        this.vista_trabajo.setDefaultCloseOperation(2);
         this.vista_trabajo.setVisible(true);
         
         vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
@@ -129,55 +130,61 @@ public class C_Trabajo implements ActionListener {
             // LIMPIAR
             vista_trabajo.limpiarCampos();
             
-//            
-//        } else if (e.getSource() == vista_trabajo.btn_agregar) {
-//            // AGREGAR DETALLE
-//            // Se debe registrar un nuevo detalle servicio y actualizar tabla detalle
-//            
-//            modelo_detalle.registrar(
-//                    this.trabajo_seleccionado,
-//                    Integer.parseInt(vista_trabajo.selector_herramienta.getSelectedItem().toString().split(",")[0]),
-//                    0f,
-//            );
-//            
-////            recargarDetalle(this.trabajo_seleccionado);
-//            
-//            
-//        } else if (e.getSource() == vista_trabajo.btn_quitar) {
-//            // QUITAR DETALLE
-//            int fila = vista_trabajo.tabla_detalle.getSelectedRow();
-//            if (fila >= 0) {
-//                modelo_detalle.eliminar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 1).toString()));
-////                recargarDetalle(trabajo_seleccionado);
-//            }
-//            
-//        } else if (e.getSource() == vista_trabajo.btn_cargar_detalle) {
-//            // CARGAR DETALLE
-//            cargarDetalle();
+            
+        } else if (e.getSource() == vista_trabajo.btn_agregar) {
+            // AGREGAR DETALLE
+            // Se debe registrar un nuevo detalle servicio y actualizar tabla detalle
+            
+            modelo_detalle.registrar(
+                    this.trabajo_seleccionado,
+                    Integer.parseInt(vista_trabajo.selector_herramienta.getSelectedItem().toString().split(",")[0])
+            );
+            if (trabajo_seleccionado > 0) {
+                vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
+                vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
+                vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+                vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(trabajo_seleccionado));
+            }
+            
+        } else if (e.getSource() == vista_trabajo.btn_quitar) {
+            // QUITAR DETALLE
+            int fila = vista_trabajo.tabla_detalle.getSelectedRow();
+            if (fila >= 0) {
+                modelo_detalle.eliminar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 1).toString()));
+                if (this.trabajo_seleccionado > 0) {
+                    vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
+                    vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
+                    vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+                    vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(this.trabajo_seleccionado));
+                }
+            }
+            
+        } else if (e.getSource() == vista_trabajo.btn_cargar_detalle) {
+            // CARGAR DETALLE
+            cargarDetalle();
         }
     }
     
-//    private void cargarDetalle(){
-//        int fila = vista_trabajo.tabla_trabajos.getSelectedRow();
-//        if (fila >= 0) {
-//            int id = Integer.parseInt(vista_trabajo.tabla_trabajos.getValueAt(fila, 0).toString());
-//            this.trabajo_seleccionado = id;
-////            actualizarTotal(id);
-//            actualizarTablaInforme();
-//            vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
-//            
-//        }
-//        
-//    }
+    private void cargarDetalle(){
+        int fila = vista_trabajo.tabla_trabajos.getSelectedRow();
+        if (fila >= 0) {
+            int id = Integer.parseInt(vista_trabajo.tabla_trabajos.getValueAt(fila, 0).toString());
+            this.trabajo_seleccionado = id;
+            
+            vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
+            
+        }
+        
+    }
     
-//     private void recargarDetalle(int id){
-//        if (id > 0) {
-//            actualizarTotal(id);
-//            actualizarTablaInforme();
-//            vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
-//        }
-//        
-//    }
-
+     private void recargarDetalle(int id){
+        if (id > 0) {
+            vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
+        }
+        
+    }
     
 }

@@ -64,7 +64,7 @@ public class V_Trabajo extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         txt_descripcion = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel1.setText("ID");
@@ -321,15 +321,14 @@ public class V_Trabajo extends javax.swing.JFrame {
      public void actualizarTablaDetalle(ArrayList<ArrayList> detalles){
         DefaultTableModel dfm2 = new DefaultTableModel();
         tabla_detalle.setModel(dfm2);
-        dfm2.addColumn("ID");
-        dfm2.addColumn("NOMBRE");
-        dfm2.addColumn("MARCA");
+        dfm2.addColumn("TRABAJO_ID");
+        dfm2.addColumn("HERRAMIENTA_ID");
         
-        Object[] fila = new Object[3];
+        
+        Object[] fila = new Object[2];
         for (int i = 0; i < detalles.size(); i++) {
             fila[0] = detalles.get(i).get(0);
             fila[1] = detalles.get(i).get(1);
-            fila[2] = detalles.get(i).get(2);
             
             dfm2.addRow(fila);
         }
