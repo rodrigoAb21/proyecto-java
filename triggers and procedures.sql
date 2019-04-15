@@ -1,3 +1,6 @@
+
+USE `arquitectura`;
+
 -- PROCEDIMIENTOS
 
 DROP procedure IF EXISTS `proc_actualizar_detalle_informe`;
