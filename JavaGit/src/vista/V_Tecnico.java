@@ -20,6 +20,12 @@ public class V_Tecnico extends javax.swing.JFrame {
      */
     public V_Tecnico() {
         initComponents();
+        
+        this.setDefaultCloseOperation(2);
+        this.setVisible(true);
+        this.txt_id.setEditable(false);
+        this.btn_editar.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
     }
 
     /**

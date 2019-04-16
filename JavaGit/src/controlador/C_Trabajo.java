@@ -55,24 +55,7 @@ public class C_Trabajo implements ActionListener {
         this.vista_trabajo.btn_agregar.addActionListener(this);
         this.vista_trabajo.btn_quitar.addActionListener(this);
         
-        // Selectores
-        this.vista_trabajo.selector_tecnico.addActionListener(this);
-        this.vista_trabajo.selector_herramienta.addActionListener(this);
         
-        // JFrame.DISPOSE = 2
-        this.vista_trabajo.setDefaultCloseOperation(2);
-        this.vista_trabajo.setVisible(true);
-        this.vista_trabajo.txt_id.setEditable(false);
-        
-        if (this.estado.equals("Finalizado")) {
-            this.vista_trabajo.btn_registrar.setEnabled(false);
-            this.vista_trabajo.btn_limpiar.setEnabled(false);
-        }
-        this.vista_trabajo.btn_editar.setEnabled(false);
-        this.vista_trabajo.btn_eliminar.setEnabled(false);
-        this.vista_trabajo.btn_cargar_detalle.setEnabled(false);
-        this.vista_trabajo.btn_agregar.setEnabled(false);
-        this.vista_trabajo.btn_quitar.setEnabled(false);
         
         vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
         vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());

@@ -20,6 +20,22 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
      */
     public V_Informe_Servicio() {
         initComponents();
+        
+        
+        this.setDefaultCloseOperation(2);
+        this.setVisible(true);
+        this.txt_id.setEditable(false);
+        this.txt_costo_total.setEditable(false);
+        this.txt_estado.setEditable(false);
+        
+        this.btn_editar.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
+        this.btn_cargar_detalle.setEnabled(false);
+        this.btn_agregar.setEnabled(false);
+        this.btn_quitar.setEnabled(false);
+        this.btn_trabajos.setEnabled(false);
+        this.btn_actualizar.setEnabled(false);
+        this.btn_finalizar.setEnabled(false);
     }
 
     /**

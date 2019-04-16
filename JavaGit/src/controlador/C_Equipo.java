@@ -29,22 +29,14 @@ public class C_Equipo implements ActionListener {
     }
     
     public void initComponent(){
+        // Escuachadores en botones
         this.vista_equipo.btn_registrar.addActionListener(this);
         this.vista_equipo.btn_editar.addActionListener(this);
         this.vista_equipo.btn_eliminar.addActionListener(this);
         this.vista_equipo.btn_limpiar.addActionListener(this);
-        this.vista_equipo.selector_tipo.addActionListener(this);
         
-        
-        this.vista_equipo.setDefaultCloseOperation(2);
-        this.vista_equipo.setVisible(true);
-        this.vista_equipo.txt_id.setEditable(false);
-        this.vista_equipo.btn_editar.setEnabled(false);
-        this.vista_equipo.btn_eliminar.setEnabled(false);
-        this.vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
         this.vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
-        
-        
+        this.vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
     }
 
     @Override
@@ -58,7 +50,6 @@ public class C_Equipo implements ActionListener {
                 Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split(",")[0])
             );
             
-            vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
             vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
             vista_equipo.limpiarCampos();
             
@@ -72,8 +63,7 @@ public class C_Equipo implements ActionListener {
                 vista_equipo.txt_marca.getText(),
                 Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split(",")[0])
             );
-
-            vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
+            
             vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
             vista_equipo.limpiarCampos();
 
@@ -81,12 +71,9 @@ public class C_Equipo implements ActionListener {
         } else if (e.getSource() == vista_equipo.btn_eliminar) {
             // **************** ELIMINAR ****************
             modelo_equipo.eliminar(Integer.parseInt(vista_equipo.txt_id.getText()));
-                    
-            vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
+            
             vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
             vista_equipo.limpiarCampos();
-            
-            
         } else if (e.getSource() == vista_equipo.btn_limpiar) {
             //  **************** LIMPIAR ****************
             vista_equipo.limpiarCampos();

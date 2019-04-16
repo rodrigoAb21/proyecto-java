@@ -22,6 +22,12 @@ public class V_Equipo extends javax.swing.JFrame {
      */
     public V_Equipo() {
         initComponents();
+         // Seteo de propiedades de la vista antes de ser mostrada
+        this.setDefaultCloseOperation(2);
+        txt_id.setEditable(false);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+        this.setVisible(true);
     }
 
     /**

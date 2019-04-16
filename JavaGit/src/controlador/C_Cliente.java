@@ -31,11 +31,6 @@ public class C_Cliente implements ActionListener {
         this.vista_cliente.btn_eliminar.addActionListener(this);
         this.vista_cliente.btn_limpiar.addActionListener(this);
         
-        this.vista_cliente.setDefaultCloseOperation(2);
-        this.vista_cliente.setVisible(true);
-        this.vista_cliente.txt_id.setEditable(false);
-        this.vista_cliente.btn_editar.setEnabled(false);
-        this.vista_cliente.btn_eliminar.setEnabled(false);
         vista_cliente.actualizarTabla(modelo_cliente.getClientes());
         
     }

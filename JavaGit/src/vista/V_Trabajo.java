@@ -22,6 +22,20 @@ public class V_Trabajo extends javax.swing.JFrame {
     public V_Trabajo(String estado) {
         initComponents();
         this.estado = estado;
+        
+        this.setDefaultCloseOperation(2);
+        this.setVisible(true);
+        this.txt_id.setEditable(false);
+        
+        if (this.estado.equals("Finalizado")) {
+            this.btn_registrar.setEnabled(false);
+            this.btn_limpiar.setEnabled(false);
+        }
+        this.btn_editar.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
+        this.btn_cargar_detalle.setEnabled(false);
+        this.btn_agregar.setEnabled(false);
+        this.btn_quitar.setEnabled(false);
     }
 
     /**

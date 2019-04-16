@@ -31,13 +31,7 @@ public class C_Tecnico implements ActionListener {
         this.vista_tecnico.btn_eliminar.addActionListener(this);
         this.vista_tecnico.btn_limpiar.addActionListener(this);
         
-        this.vista_tecnico.setDefaultCloseOperation(2);
-        this.vista_tecnico.setVisible(true);
-        this.vista_tecnico.txt_id.setEditable(false);
-        this.vista_tecnico.btn_editar.setEnabled(false);
-        this.vista_tecnico.btn_eliminar.setEnabled(false);
         vista_tecnico.actualizarTabla(modelo_tecnico.getTecnicos());
-        
     }
 
     @Override

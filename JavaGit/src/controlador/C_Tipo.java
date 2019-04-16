@@ -31,11 +31,6 @@ public class C_Tipo implements ActionListener {
         this.vista_tipo.btn_eliminar.addActionListener(this);
         this.vista_tipo.btn_limpiar.addActionListener(this);
         
-        this.vista_tipo.setDefaultCloseOperation(2);
-        this.vista_tipo.setVisible(true);
-        this.vista_tipo.txt_id.setEditable(false);
-        this.vista_tipo.btn_editar.setEnabled(false);
-        this.vista_tipo.btn_eliminar.setEnabled(false);
         vista_tipo.actualizarTabla(modelo_tipo.getTipos());
         
     }

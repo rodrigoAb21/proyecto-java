@@ -53,31 +53,7 @@ public class C_Informe_Servicio implements ActionListener {
         this.vista_informe_servicio.btn_quitar.addActionListener(this);
         this.vista_informe_servicio.btn_trabajos.addActionListener(this);
         
-        // Selectores
-        this.vista_informe_servicio.selector_cliente.addActionListener(this);
-        this.vista_informe_servicio.selector_equipo.addActionListener(this);
-        
-        
-        this.vista_informe_servicio.setDefaultCloseOperation(2);
-        this.vista_informe_servicio.setVisible(true);
-        this.vista_informe_servicio.txt_id.setEditable(false);
-        this.vista_informe_servicio.txt_costo_total.setEditable(false);
-        this.vista_informe_servicio.txt_estado.setEditable(false);
-        
-        this.vista_informe_servicio.btn_editar.setEnabled(false);
-        this.vista_informe_servicio.btn_eliminar.setEnabled(false);
-        this.vista_informe_servicio.btn_cargar_detalle.setEnabled(false);
-        this.vista_informe_servicio.btn_agregar.setEnabled(false);
-        this.vista_informe_servicio.btn_quitar.setEnabled(false);
-        this.vista_informe_servicio.btn_trabajos.setEnabled(false);
-        this.vista_informe_servicio.btn_actualizar.setEnabled(false);
-        this.vista_informe_servicio.btn_finalizar.setEnabled(false);
-        
-        
-        
         actualizarVista();
-        
-        
     }
     
     private void actualizarVista(){

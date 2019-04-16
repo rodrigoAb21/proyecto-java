@@ -20,6 +20,12 @@ public class V_Herramienta extends javax.swing.JFrame {
      */
     public V_Herramienta() {
         initComponents();
+        
+        this.setDefaultCloseOperation(2);
+        this.setVisible(true);
+        this.txt_id.setEditable(false);
+        this.btn_editar.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
     }
 
     /**
