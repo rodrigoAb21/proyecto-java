@@ -78,7 +78,6 @@ public class C_Informe_Servicio implements ActionListener {
         if (e.getSource() == vista_informe_servicio.btn_registrar) {
             // REGISTRAR
             modelo_informe_servicio.registrar(
-                    Integer.parseInt(vista_informe_servicio.txt_id.getText()),
                     vista_informe_servicio.txt_fecha_recepcion.getText(),
                     vista_informe_servicio.txt_fecha_finalizacion.getText(),
                     0f,

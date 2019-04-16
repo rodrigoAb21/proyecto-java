@@ -43,7 +43,6 @@ public class C_Tipo implements ActionListener {
         if (e.getSource() == vista_tipo.btn_registrar) {
             // Registrar 
             modelo_tipo.registrar(
-                Integer.parseInt(vista_tipo.txt_id.getText()),
                 vista_tipo.txt_nombre.getText()
             );
             

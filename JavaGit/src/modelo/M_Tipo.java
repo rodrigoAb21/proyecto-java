@@ -50,14 +50,13 @@ public class M_Tipo {
     
     
     // METODOS
-    public boolean registrar(int id, String nombre){
+    public boolean registrar(String nombre){
         try {
             db.conectar();
-            String sql = "INSERT INTO tipo (id, nombre) " + 
-                    " VALUES (?, ?)" ;
+            String sql = "INSERT INTO tipo (nombre) " + 
+                    " VALUES (?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, nombre);
+            ps.setString(1, nombre);
             
             int i = ps.executeUpdate();
             db.desconectar();

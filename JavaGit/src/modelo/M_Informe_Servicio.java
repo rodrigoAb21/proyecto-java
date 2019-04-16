@@ -22,16 +22,6 @@ public class M_Informe_Servicio {
     private String estado;
     private int cliente_id;
     private ConexionBD db;
-
-    public M_Informe_Servicio(int id, String fecha_recepcion, String fecha_finalizacion, float costo_total, String estado, int cliente_id) {
-        this.id = id;
-        this.fecha_recepcion = fecha_recepcion;
-        this.fecha_finalizacion = fecha_finalizacion;
-        this.costo_total = costo_total;
-        this.estado = estado;
-        this.cliente_id = cliente_id;
-        this.db = new ConexionBD();
-    }
     
     public M_Informe_Servicio() {
         this.id = 0;
@@ -94,19 +84,18 @@ public class M_Informe_Servicio {
        
     
     // METODOS
-    public boolean registrar(int id, String fecha_recepcion, String fecha_finalizacion, 
+    public boolean registrar(String fecha_recepcion, String fecha_finalizacion, 
             float costo_total, String estado, int cliente_id){
         try {
             db.conectar();
-            String sql = "INSERT INTO informe_servicio (id, fecha_recepcion, fecha_finalizacion, " + 
-                    "costo_total, estado, cliente_id) VALUES (?, ?, ?, ?, ?, ?)" ;
+            String sql = "INSERT INTO informe_servicio (fecha_recepcion, fecha_finalizacion, " + 
+                    "costo_total, estado, cliente_id) VALUES (?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, fecha_recepcion);
-            ps.setString(3, fecha_finalizacion);
-            ps.setFloat(4, costo_total);
-            ps.setString(5, estado);
-            ps.setInt(6, cliente_id);
+            ps.setString(1, fecha_recepcion);
+            ps.setString(2, fecha_finalizacion);
+            ps.setFloat(3, costo_total);
+            ps.setString(4, estado);
+            ps.setInt(5, cliente_id);
             
             int i = ps.executeUpdate();
             db.desconectar();

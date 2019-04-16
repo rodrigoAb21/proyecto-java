@@ -108,21 +108,20 @@ public class M_Trabajo {
        
     
     // METODOS
-    public boolean registrar(int id, String fecha_inicio, String fecha_fin, 
+    public boolean registrar(String fecha_inicio, String fecha_fin, 
             float costo, String descripcion, int tecnico_id, int informe_id, int equipo_id){
         try {
             db.conectar();
-            String sql = "INSERT INTO trabajo (id, fecha_inicio, fecha_fin, " + 
-                    "costo, descripcion, tecnico_id, informe_id, equipo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)" ;
+            String sql = "INSERT INTO trabajo (fecha_inicio, fecha_fin, " + 
+                    "costo, descripcion, tecnico_id, informe_id, equipo_id) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, fecha_inicio);
-            ps.setString(3, fecha_fin);
-            ps.setFloat(4, costo);
-            ps.setString(5, descripcion);
-            ps.setInt(6, tecnico_id);
-            ps.setInt(7, informe_id);
-            ps.setInt(8, equipo_id);
+            ps.setString(1, fecha_inicio);
+            ps.setString(2, fecha_fin);
+            ps.setFloat(3, costo);
+            ps.setString(4, descripcion);
+            ps.setInt(5, tecnico_id);
+            ps.setInt(6, informe_id);
+            ps.setInt(7, equipo_id);
             
             int i = ps.executeUpdate();
             db.desconectar();

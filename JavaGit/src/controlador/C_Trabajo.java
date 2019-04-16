@@ -84,7 +84,6 @@ public class C_Trabajo implements ActionListener {
         if (e.getSource() == vista_trabajo.btn_registrar) {
             // REGISTRAR
             modelo_trabajo.registrar(
-                    Integer.parseInt(vista_trabajo.txt_id.getText()),
                     vista_trabajo.txt_fecha_inicio.getText(),
                     vista_trabajo.txt_fecha_fin.getText(),
                     Float.parseFloat(vista_trabajo.txt_costo.getText()),

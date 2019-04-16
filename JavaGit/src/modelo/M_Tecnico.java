@@ -96,20 +96,19 @@ public class M_Tecnico {
     
     
     // METODOS
-    public boolean registrar(int id, String ci, String nombre, String apellido, 
+    public boolean registrar(String ci, String nombre, String apellido, 
             String especialidad, String direccion, String telefono){
         try {
             db.conectar();
-            String sql = "INSERT INTO tecnico (id, ci, nombre, apellido, " + 
-                    "especialidad, direccion, telefono) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
+            String sql = "INSERT INTO tecnico (ci, nombre, apellido, " + 
+                    "especialidad, direccion, telefono) VALUES ( ?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, ci);
-            ps.setString(3, nombre);
-            ps.setString(4, apellido);
-            ps.setString(5, especialidad);
-            ps.setString(6, direccion);
-            ps.setString(7, telefono);
+            ps.setString(1, ci);
+            ps.setString(2, nombre);
+            ps.setString(3, apellido);
+            ps.setString(4, especialidad);
+            ps.setString(5, direccion);
+            ps.setString(6, telefono);
             
             int i = ps.executeUpdate();
             db.desconectar();

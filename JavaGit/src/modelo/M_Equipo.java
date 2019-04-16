@@ -75,17 +75,16 @@ public class M_Equipo {
     
     
     // METODOS
-    public boolean registrar(int id, String modelo, String nro_serie, String marca, int tipo_id){
+    public boolean registrar(String modelo, String nro_serie, String marca, int tipo_id){
         try {
             db.conectar();
-            String sql = "INSERT INTO equipo (id, modelo, nro_serie, marca" + 
-                    ", tipo_id) VALUES (?, ?, ?, ?, ?)" ;
+            String sql = "INSERT INTO equipo (modelo, nro_serie, marca" + 
+                    ", tipo_id) VALUES (?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, modelo);
-            ps.setString(3, nro_serie);
-            ps.setString(4, marca);
-            ps.setInt(5, tipo_id);
+            ps.setString(1, modelo);
+            ps.setString(2, nro_serie);
+            ps.setString(3, marca);
+            ps.setInt(4, tipo_id);
             
             int i = ps.executeUpdate();
             db.desconectar();

@@ -43,7 +43,6 @@ public class C_Tecnico implements ActionListener {
         if (e.getSource() == vista_tecnico.btn_registrar) {
             // **************** REGISTRAR ****************
             modelo_tecnico.registrar(
-                Integer.parseInt(vista_tecnico.txt_id.getText()),
                 vista_tecnico.txt_ci.getText(),
                 vista_tecnico.txt_nombre.getText(),
                 vista_tecnico.txt_apellido.getText(),

@@ -74,17 +74,16 @@ public class M_Cliente {
     }
     
     // METODOS
-    public boolean registrar(int id, String nit, String nombre, String direccion, String telefono){
+    public boolean registrar(String nit, String nombre, String direccion, String telefono){
         try {
             db.conectar();
-            String sql = "INSERT INTO cliente (id, nit, nombre, direccion, " + 
-                    "telefono) VALUES (?, ?, ?, ?, ?)" ;
+            String sql = "INSERT INTO cliente (nit, nombre, direccion, " + 
+                    "telefono) VALUES (?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, nit);
-            ps.setString(3, nombre);
-            ps.setString(4, direccion);
-            ps.setString(5, telefono);
+            ps.setString(1, nit);
+            ps.setString(2, nombre);
+            ps.setString(3, direccion);
+            ps.setString(4, telefono);
             
             int i = ps.executeUpdate();
             db.desconectar();

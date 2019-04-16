@@ -49,7 +49,6 @@ public class C_Equipo implements ActionListener {
         if (e.getSource() == vista_equipo.btn_registrar) {
             // **************** REGISTRAR ****************    
             modelo_equipo.registrar(
-                Integer.parseInt(vista_equipo.txt_id.getText()),
                 vista_equipo.txt_modelo.getText(),
                 vista_equipo.txt_nro_serie.getText(),
                 vista_equipo.txt_marca.getText(),

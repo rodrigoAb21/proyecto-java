@@ -43,7 +43,6 @@ public class C_Cliente implements ActionListener {
         if (e.getSource() == vista_cliente.btn_registrar) {
             // **************** REGISTRAR ****************    
             modelo_cliente.registrar(
-                    Integer.parseInt(vista_cliente.txt_id.getText()),
                     vista_cliente.txt_nit.getText(),
                     vista_cliente.txt_nombre.getText(),
                     vista_cliente.txt_direccion.getText(),

@@ -44,7 +44,6 @@ public class C_Herramienta implements ActionListener {
         if (e.getSource() == vista_herramienta.btn_registrar) {
             // **************** REGISTRAR ****************    
             modelo_herramienta.registrar(
-                    Integer.parseInt(vista_herramienta.txt_id.getText()), 
                     vista_herramienta.txt_descripcion.getText(), 
                     vista_herramienta.txt_marca.getText()
             );

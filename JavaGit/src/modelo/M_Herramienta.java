@@ -55,15 +55,14 @@ public class M_Herramienta {
     
     
     // METODOS
-    public boolean registrar(int id, String descripcion, String marca){
+    public boolean registrar(String descripcion, String marca){
         try {
             db.conectar();
-            String sql = "INSERT INTO herramienta (id, descripcion, marca) " + 
-                    " VALUES (?, ?, ?)" ;
+            String sql = "INSERT INTO herramienta (descripcion, marca) " + 
+                    " VALUES (?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setString(2, descripcion);
-            ps.setString(3, marca);
+            ps.setString(1, descripcion);
+            ps.setString(2, marca);
             
             int i = ps.executeUpdate();
             db.desconectar();
