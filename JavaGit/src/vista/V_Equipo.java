@@ -51,6 +51,7 @@ public class V_Equipo extends javax.swing.JFrame {
         selector_tipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("GESTIONAR EQUIPOS");
 
         jLabel1.setText("ID");
 

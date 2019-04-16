@@ -43,6 +43,7 @@ public class V_Tipo extends javax.swing.JFrame {
         tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("GESTIONAR TIPOS DE EQUIPOS");
 
         jLabel1.setText("ID");
 

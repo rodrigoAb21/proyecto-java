@@ -49,6 +49,7 @@ public class V_Cliente extends javax.swing.JFrame {
         tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("GESTIONAR CLIENTES");
 
         jLabel1.setText("ID");
 
