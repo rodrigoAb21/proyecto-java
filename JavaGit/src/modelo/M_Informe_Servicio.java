@@ -132,7 +132,7 @@ public class M_Informe_Servicio {
         }
     }
     
-    public boolean anular(int id){
+    public boolean eliminar(int id){
            try {
             db.conectar();
             String sql = "DELETE FROM informe_servicio WHERE id = ?";
@@ -180,14 +180,14 @@ public class M_Informe_Servicio {
     }
     
     
-    public boolean actualizarEstado(String estado){
+    public boolean actualizarEstado(int id, String estado){
         try {
             db.conectar();
             String sql = "UPDATE informe_servicio SET " + 
                     "estado = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setString(1, estado);
-            ps.setInt(2, this.id);
+            ps.setInt(2, id);
             
             int i = ps.executeUpdate();
             db.desconectar();

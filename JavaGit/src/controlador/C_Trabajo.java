@@ -27,17 +27,18 @@ public class C_Trabajo implements ActionListener {
     private int trabajo_seleccionado = -1;
     private int informe_id;
     private int equipo_id;
+    private String estado;
     
 
-    public C_Trabajo(int informe_id, int equipo_id) {
+    public C_Trabajo(int informe_id, int equipo_id, String estado) {
         this.modelo_trabajo = new M_Trabajo();
         this.modelo_tecnico = new M_Tecnico();
         this.modelo_herramienta = new M_Herramienta();
         this.modelo_detalle = new M_Detalle_Trabajo();
-        this.vista_trabajo = new V_Trabajo();
+        this.vista_trabajo = new V_Trabajo(estado);
         this.informe_id = informe_id;
         this.equipo_id = equipo_id;
-        
+        this.estado = estado;
         initComponent();
     }
     
@@ -63,6 +64,10 @@ public class C_Trabajo implements ActionListener {
         this.vista_trabajo.setVisible(true);
         this.vista_trabajo.txt_id.setEditable(false);
         
+        if (this.estado.equals("Finalizado")) {
+            this.vista_trabajo.btn_registrar.setEnabled(false);
+            this.vista_trabajo.btn_limpiar.setEnabled(false);
+        }
         this.vista_trabajo.btn_editar.setEnabled(false);
         this.vista_trabajo.btn_eliminar.setEnabled(false);
         this.vista_trabajo.btn_cargar_detalle.setEnabled(false);

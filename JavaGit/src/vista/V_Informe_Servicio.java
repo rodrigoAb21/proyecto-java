@@ -62,8 +62,9 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         btn_finalizar = new javax.swing.JButton();
         btn_registrar = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
-        btn_anular = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GESTIONAR INFORMES DE SERVICIO");
@@ -181,15 +182,17 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
 
         btn_cargar_detalle.setText("CARGAR DETALLE");
 
-        btn_finalizar.setText("FINALIZAR SERVICIO");
+        btn_finalizar.setText("FINALIZAR ");
 
         btn_registrar.setText("REGISTRAR");
 
         btn_editar.setText("EDITAR");
 
-        btn_anular.setText("ANULAR");
+        btn_eliminar.setText("ELIMINAR");
 
         btn_limpiar.setText("LIMPIAR");
+
+        btn_actualizar.setText("ACTUALIZAR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -205,15 +208,6 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel6))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(btn_registrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_editar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_anular)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_limpiar))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -236,14 +230,25 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                                             .addComponent(selector_cliente, 0, 184, Short.MAX_VALUE)
                                             .addComponent(txt_fecha_finalizacion)
                                             .addComponent(txt_costo_total)
-                                            .addComponent(txt_estado))))))
+                                            .addComponent(txt_estado)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(btn_registrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_editar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_eliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_limpiar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_finalizar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addGap(157, 157, 157)
                 .addComponent(btn_cargar_detalle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_finalizar)
+                .addComponent(btn_actualizar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -281,17 +286,18 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_registrar)
                     .addComponent(btn_editar)
-                    .addComponent(btn_anular)
-                    .addComponent(btn_limpiar))
+                    .addComponent(btn_eliminar)
+                    .addComponent(btn_limpiar)
+                    .addComponent(btn_finalizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cargar_detalle)
-                    .addComponent(btn_finalizar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_actualizar))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -337,13 +343,32 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
             }
         }
         
-        btn_registrar.setEnabled(false);
-        btn_editar.setEnabled(true);
-        btn_anular.setEnabled(true);
-        btn_cargar_detalle.setEnabled(true);
-        btn_agregar.setEnabled(false);
-        btn_quitar.setEnabled(false);
-        btn_trabajos.setEnabled(false);
+        btn_actualizar.setEnabled(false);
+        
+        switch (txt_estado.getText()) {
+            case "Activo":
+                btn_registrar.setEnabled(false);
+                btn_editar.setEnabled(true);
+                btn_eliminar.setEnabled(true);
+                btn_cargar_detalle.setEnabled(true);
+                btn_agregar.setEnabled(false);
+                btn_quitar.setEnabled(false);
+                btn_trabajos.setEnabled(false);
+                btn_limpiar.setEnabled(true);
+                btn_finalizar.setEnabled(true);
+                break;
+            case "Finalizado":
+                btn_registrar.setEnabled(false);
+                btn_editar.setEnabled(false);
+                btn_eliminar.setEnabled(true);
+                btn_cargar_detalle.setEnabled(true);
+                btn_agregar.setEnabled(false);
+                btn_quitar.setEnabled(false);
+                btn_trabajos.setEnabled(false);
+                btn_limpiar.setEnabled(true);
+                btn_finalizar.setEnabled(false);
+                break;  
+        }
     }//GEN-LAST:event_tabla_serviciosMouseClicked
         
     
@@ -355,12 +380,14 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         txt_costo_total.setText("");
         txt_estado.setText("");
         
+        btn_registrar.setEnabled(true);
         btn_editar.setEnabled(false);
-        btn_anular.setEnabled(false);
+        btn_eliminar.setEnabled(false);
         btn_cargar_detalle.setEnabled(false);
         btn_agregar.setEnabled(false);
         btn_quitar.setEnabled(false);
         btn_trabajos.setEnabled(false);
+        btn_finalizar.setEnabled(false);
     }
     
     public void actualizarTablaInformes(ArrayList<ArrayList> equipos){
@@ -385,6 +412,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
             dtm.addRow(fila);
         }
         
+        btn_actualizar.setEnabled(false);
     }
     
      public void actualizarTablaDetalle(ArrayList<ArrayList> detalles){
@@ -405,9 +433,21 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
             dfm2.addRow(fila);
         }
         
-        btn_agregar.setEnabled(true);
-        btn_quitar.setEnabled(true);
-        btn_trabajos.setEnabled(true);
+        switch (txt_estado.getText()) {
+            case "Activo":
+                btn_agregar.setEnabled(true);
+                btn_quitar.setEnabled(true);
+                btn_trabajos.setEnabled(true);
+                break;
+            case "Finalizado":
+                btn_agregar.setEnabled(false);
+                btn_quitar.setEnabled(false);
+                btn_trabajos.setEnabled(true);
+                break;  
+        }
+        
+        
+        
         
     }
     
@@ -464,10 +504,11 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_actualizar;
     public javax.swing.JButton btn_agregar;
-    public javax.swing.JButton btn_anular;
     public javax.swing.JButton btn_cargar_detalle;
     public javax.swing.JButton btn_editar;
+    public javax.swing.JButton btn_eliminar;
     public javax.swing.JButton btn_finalizar;
     public javax.swing.JButton btn_limpiar;
     public javax.swing.JButton btn_quitar;

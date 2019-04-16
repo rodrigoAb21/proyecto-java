@@ -8,10 +8,6 @@ package vista;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import modelo.M_Informe_Servicio;
-import modelo.M_Cliente;
-import modelo.M_Detalle_Informe;
-import modelo.M_Equipo;
 
 /**
  *
@@ -19,11 +15,13 @@ import modelo.M_Equipo;
  */
 public class V_Trabajo extends javax.swing.JFrame {
 
+    private String estado = "";
     /**
      * Creates new form Vista_Principal
      */
-    public V_Trabajo() {
+    public V_Trabajo(String estado) {
         initComponents();
+        this.estado = estado;
     }
 
     /**
@@ -324,14 +322,22 @@ public class V_Trabajo extends javax.swing.JFrame {
             }
         }
         
-        
-        btn_registrar.setEnabled(false);
-        btn_editar.setEnabled(true);
-        btn_eliminar.setEnabled(true);
-        btn_cargar_detalle.setEnabled(true);
-        btn_agregar.setEnabled(false);
-        btn_quitar.setEnabled(false);
-        
+        if (this.estado.equals("Activo")) {
+            btn_registrar.setEnabled(false);
+            btn_editar.setEnabled(true);
+            btn_eliminar.setEnabled(true);
+            btn_cargar_detalle.setEnabled(true);
+            btn_agregar.setEnabled(false);
+            btn_quitar.setEnabled(false);
+        }else{
+            btn_registrar.setEnabled(false);
+            btn_editar.setEnabled(false);
+            btn_eliminar.setEnabled(false);
+            btn_cargar_detalle.setEnabled(true);
+            btn_agregar.setEnabled(false);
+            btn_quitar.setEnabled(false);
+            btn_limpiar.setEnabled(false);
+        }
         
     }//GEN-LAST:event_tabla_trabajosMouseClicked
         
@@ -393,8 +399,13 @@ public class V_Trabajo extends javax.swing.JFrame {
         }
         
         
-        btn_agregar.setEnabled(true);
-        btn_quitar.setEnabled(true);
+         if (this.estado.equals("Activo")) {
+            btn_agregar.setEnabled(true);
+            btn_quitar.setEnabled(true);
+         } else {
+            btn_agregar.setEnabled(false);
+            btn_quitar.setEnabled(false);
+         }
     }
     
     public void cargarSelectorTecnico(ArrayList<ArrayList> tecnicos) {
