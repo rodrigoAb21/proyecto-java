@@ -143,6 +143,11 @@ public class V_Herramienta extends javax.swing.JFrame {
         txt_id.setText(m.getValueAt(fila, 0).toString());
         txt_descripcion.setText(m.getValueAt(fila, 1).toString());
         txt_marca.setText(m.getValueAt(fila, 2).toString());
+        
+        btn_registrar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
+
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -153,6 +158,10 @@ public class V_Herramienta extends javax.swing.JFrame {
         txt_id.setText("");
         txt_descripcion.setText("");
         txt_marca.setText("");
+        
+        btn_registrar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
     }
     
     public void actualizarTabla(ArrayList<ArrayList> herramientas){

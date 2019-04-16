@@ -182,6 +182,10 @@ public class V_Equipo extends javax.swing.JFrame {
                 break;
             }
         }
+        
+        btn_registrar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -194,6 +198,9 @@ public class V_Equipo extends javax.swing.JFrame {
         txt_nro_serie.setText("");
         txt_marca.setText("");
         
+        btn_registrar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
     }
     
     public void actualizarTabla(ArrayList<ArrayList> equipos){

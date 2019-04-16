@@ -25,7 +25,6 @@ public class C_Informe_Servicio implements ActionListener {
     private V_Informe_Servicio vista_informe_servicio;
     
     private int informe_seleccionado = -1;
-    private int detalle_seleccionado = -1;
     
 
     public C_Informe_Servicio() {
@@ -42,7 +41,7 @@ public class C_Informe_Servicio implements ActionListener {
         //Botones informe
         this.vista_informe_servicio.btn_registrar.addActionListener(this);
         this.vista_informe_servicio.btn_editar.addActionListener(this);
-        this.vista_informe_servicio.btn_eliminar.addActionListener(this);
+        this.vista_informe_servicio.btn_anular.addActionListener(this);
         this.vista_informe_servicio.btn_limpiar.addActionListener(this);
         this.vista_informe_servicio.btn_cargar_detalle.addActionListener(this);
         this.vista_informe_servicio.btn_finalizar.addActionListener(this);
@@ -59,8 +58,17 @@ public class C_Informe_Servicio implements ActionListener {
         
         this.vista_informe_servicio.setDefaultCloseOperation(2);
         this.vista_informe_servicio.setVisible(true);
+        this.vista_informe_servicio.txt_id.setEditable(false);
         this.vista_informe_servicio.txt_costo_total.setEditable(false);
         this.vista_informe_servicio.txt_estado.setEditable(false);
+        
+        this.vista_informe_servicio.btn_editar.setEnabled(false);
+        this.vista_informe_servicio.btn_anular.setEnabled(false);
+        this.vista_informe_servicio.btn_cargar_detalle.setEnabled(false);
+        this.vista_informe_servicio.btn_agregar.setEnabled(false);
+        this.vista_informe_servicio.btn_quitar.setEnabled(false);
+        this.vista_informe_servicio.btn_trabajos.setEnabled(false);
+        
         actualizarVista();
         
         
@@ -101,7 +109,7 @@ public class C_Informe_Servicio implements ActionListener {
             actualizarVista();
             
             
-        } else if (e.getSource() == vista_informe_servicio.btn_eliminar) {
+        } else if (e.getSource() == vista_informe_servicio.btn_anular) {
             // ELIMINAR
             modelo_informe_servicio.anular(Integer.parseInt(vista_informe_servicio.txt_id.getText()));
             vista_informe_servicio.limpiarCampos();
@@ -156,7 +164,6 @@ public class C_Informe_Servicio implements ActionListener {
             vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
             
         }
-        
     }
     
      private void recargarDetalle(int id){

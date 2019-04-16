@@ -323,6 +323,16 @@ public class V_Trabajo extends javax.swing.JFrame {
                 break;
             }
         }
+        
+        
+        btn_registrar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
+        btn_cargar_detalle.setEnabled(true);
+        btn_agregar.setEnabled(false);
+        btn_quitar.setEnabled(false);
+        
+        
     }//GEN-LAST:event_tabla_trabajosMouseClicked
         
     
@@ -333,6 +343,14 @@ public class V_Trabajo extends javax.swing.JFrame {
         txt_fecha_fin.setText("");
         txt_costo.setText("");
         txt_descripcion.setText("");
+        
+        
+        btn_registrar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+        btn_cargar_detalle.setEnabled(false);
+        btn_agregar.setEnabled(false);
+        btn_quitar.setEnabled(false);
     }
     
     public void actualizarTablaTrabajos(ArrayList<ArrayList> equipos){
@@ -374,6 +392,9 @@ public class V_Trabajo extends javax.swing.JFrame {
             dfm2.addRow(fila);
         }
         
+        
+        btn_agregar.setEnabled(true);
+        btn_quitar.setEnabled(true);
     }
     
     public void cargarSelectorTecnico(ArrayList<ArrayList> tecnicos) {

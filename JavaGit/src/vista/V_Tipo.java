@@ -136,6 +136,11 @@ public class V_Tipo extends javax.swing.JFrame {
         int fila = tabla.getSelectedRow();
         txt_id.setText(m.getValueAt(fila, 0).toString());
         txt_nombre.setText(m.getValueAt(fila, 1).toString());
+        
+        
+        btn_registrar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -145,6 +150,10 @@ public class V_Tipo extends javax.swing.JFrame {
     public void limpiarCampos(){
         txt_id.setText("");
         txt_nombre.setText("");
+        
+        btn_registrar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
     }
     
     public void actualizarTabla(ArrayList<ArrayList> tipos){

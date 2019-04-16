@@ -198,6 +198,11 @@ public class V_Tecnico extends javax.swing.JFrame {
         txt_especialidad.setText(m.getValueAt(fila, 4).toString());
         txt_direccion.setText(m.getValueAt(fila, 5).toString());
         txt_telefono.setText(m.getValueAt(fila, 6).toString());
+        
+        
+        btn_registrar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -212,6 +217,10 @@ public class V_Tecnico extends javax.swing.JFrame {
         txt_especialidad.setText("");
         txt_direccion.setText("");
         txt_telefono.setText("");
+        
+        btn_registrar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
     }
     
     public void actualizarTabla(ArrayList<ArrayList> tecnicos){

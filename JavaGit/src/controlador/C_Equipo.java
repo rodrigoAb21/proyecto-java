@@ -38,8 +38,11 @@ public class C_Equipo implements ActionListener {
         
         this.vista_equipo.setDefaultCloseOperation(2);
         this.vista_equipo.setVisible(true);
-        vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
-        vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
+        this.vista_equipo.txt_id.setEditable(false);
+        this.vista_equipo.btn_editar.setEnabled(false);
+        this.vista_equipo.btn_eliminar.setEnabled(false);
+        this.vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
+        this.vista_equipo.cargarSelector(modelo_tipo.getTiposAsc());
         
         
     }

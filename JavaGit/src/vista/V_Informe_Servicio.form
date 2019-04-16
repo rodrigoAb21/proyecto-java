@@ -245,7 +245,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btn_editar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btn_eliminar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btn_anular" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btn_limpiar" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -338,7 +338,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_registrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_editar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btn_eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btn_anular" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_limpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -495,7 +495,7 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_eliminar">
+        <Component class="javax.swing.JButton" name="btn_anular">
           <Properties>
             <Property name="text" type="java.lang.String" value="ANULAR"/>
           </Properties>

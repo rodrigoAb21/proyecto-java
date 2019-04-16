@@ -7,7 +7,6 @@ package vista;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import modelo.M_Cliente;
 
 /**
  *
@@ -174,6 +173,10 @@ public class V_Cliente extends javax.swing.JFrame {
         txt_nombre.setText(m.getValueAt(fila, 2).toString());
         txt_direccion.setText(m.getValueAt(fila, 3).toString());
         txt_telefono.setText(m.getValueAt(fila, 4).toString());
+        
+        btn_registrar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -186,6 +189,10 @@ public class V_Cliente extends javax.swing.JFrame {
         txt_nombre.setText("");
         txt_direccion.setText("");
         txt_telefono.setText("");
+        
+        btn_registrar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
     }
     
     public void actualizarTabla(ArrayList<ArrayList> clientes){
