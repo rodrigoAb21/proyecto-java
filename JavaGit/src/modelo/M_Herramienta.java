@@ -140,5 +140,31 @@ public class M_Herramienta {
         }
         return herramientas;
     }
+    
+     public ArrayList<ArrayList> getHerramientasAsc(){
+        ArrayList<ArrayList> herramientas = new ArrayList();
+        try {
+            db.conectar();
+            String query = "SELECT * FROM herramienta ORDER BY(id) ASC";
+            PreparedStatement ps = db.getConexion().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                ArrayList herramienta = new ArrayList();
+                herramienta.add(rs.getInt("id"));
+                herramienta.add(rs.getString("descripcion"));
+                herramienta.add(rs.getString("marca"));
+                
+                herramientas.add(herramienta);
+            }
+            
+            db.desconectar();
+            
+        } catch (SQLException e) {
+            System.out.println("No se pudo obtener las herramientas.");
+            System.out.println(e.getMessage());
+        }
+        return herramientas;
+    }
 }
 

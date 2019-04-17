@@ -199,4 +199,34 @@ public class M_Tecnico {
         }
         return tecnicos;
     }
+    
+    public ArrayList<ArrayList> getTecnicosAsc(){
+        ArrayList<ArrayList> tecnicos = new ArrayList();
+        try {
+            db.conectar();
+            String query = "SELECT * FROM tecnico ORDER BY(id) ASC";
+            PreparedStatement ps = db.getConexion().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                ArrayList tecnico = new ArrayList();
+                tecnico.add(rs.getInt("id"));
+                tecnico.add(rs.getString("ci"));
+                tecnico.add(rs.getString("nombre"));
+                tecnico.add(rs.getString("apellido"));
+                tecnico.add(rs.getString("especialidad"));
+                tecnico.add(rs.getString("direccion"));
+                tecnico.add(rs.getString("telefono"));
+                
+                tecnicos.add(tecnico);
+            }
+            
+            db.desconectar();
+            
+        } catch (SQLException e) {
+            System.out.println("No se pudo obtener a los tecnicos.");
+            System.out.println(e.getMessage());
+        }
+        return tecnicos;
+    }
 }

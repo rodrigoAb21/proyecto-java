@@ -395,6 +395,10 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         txt_fecha_finalizacion.setText("");
         txt_costo_total.setText("");
         txt_estado.setText("");
+        txt_observacion.setText("");
+        
+        selector_equipo.setSelectedIndex(0);
+        selector_cliente.setSelectedIndex(0);
         
         btn_registrar.setEnabled(true);
         btn_editar.setEnabled(false);
@@ -404,6 +408,11 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         btn_quitar.setEnabled(false);
         btn_trabajos.setEnabled(false);
         btn_finalizar.setEnabled(false);
+    }
+    
+     public void limpiarDetalle(){
+        txt_observacion.setText("");
+        selector_equipo.setSelectedIndex(0);
     }
     
     public void actualizarTablaInformes(ArrayList<ArrayList> equipos){

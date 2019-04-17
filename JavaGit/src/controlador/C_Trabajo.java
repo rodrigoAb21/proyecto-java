@@ -58,16 +58,16 @@ public class C_Trabajo implements ActionListener {
         
         
         vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-        vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-        vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+        vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+        vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
         
         
     }
     
     private void actualizarVista(){
         vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-        vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-        vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+        vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+        vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
     }
     
     private void actualizarTablaTrabajos(){
@@ -88,8 +88,8 @@ public class C_Trabajo implements ActionListener {
                     this.equipo_id
             );
             vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
             vista_trabajo.limpiarCampos();
             
             
@@ -106,8 +106,8 @@ public class C_Trabajo implements ActionListener {
                     this.equipo_id
             );
             vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
             vista_trabajo.limpiarCampos();
             
             
@@ -115,8 +115,8 @@ public class C_Trabajo implements ActionListener {
             // ELIMINAR
             modelo_trabajo.eliminar(Integer.parseInt(vista_trabajo.txt_id.getText()));
             vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
             vista_trabajo.limpiarCampos();
             
             
@@ -135,8 +135,8 @@ public class C_Trabajo implements ActionListener {
             );
             if (trabajo_seleccionado > 0) {
                 vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-                vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-                vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+                vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+                vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
                 vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(trabajo_seleccionado));
             }
             
@@ -147,8 +147,8 @@ public class C_Trabajo implements ActionListener {
                 modelo_detalle.eliminar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 1).toString()));
                 if (this.trabajo_seleccionado > 0) {
                     vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-                    vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-                    vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+                    vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+                    vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
                     vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(this.trabajo_seleccionado));
                 }
             }
@@ -166,8 +166,8 @@ public class C_Trabajo implements ActionListener {
             this.trabajo_seleccionado = id;
             
             vista_trabajo.actualizarTablaTrabajos(modelo_trabajo.getTrabajos(this.informe_id, this.equipo_id));
-            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicos());
-            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientas());
+            vista_trabajo.cargarSelectorTecnico(modelo_tecnico.getTecnicosAsc());
+            vista_trabajo.cargarSelectorHerramienta(modelo_herramienta.getHerramientasAsc());
             vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
             
         }

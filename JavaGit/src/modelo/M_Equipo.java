@@ -169,5 +169,33 @@ public class M_Equipo {
         return equipos;
     }
     
+    public ArrayList<ArrayList> getEquiposAsc(){
+        ArrayList<ArrayList> equipos = new ArrayList();
+        try {
+            db.conectar();
+            String query = "SELECT * FROM equipo ORDER BY(id) ASC";
+            PreparedStatement ps = db.getConexion().prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                ArrayList equipo = new ArrayList();
+                equipo.add(rs.getInt("id"));
+                equipo.add(rs.getString("modelo"));
+                equipo.add(rs.getString("nro_serie"));
+                equipo.add(rs.getString("marca"));
+                equipo.add(rs.getInt("tipo_id"));
+                
+                equipos.add(equipo);
+            }
+            
+            db.desconectar();
+            
+        } catch (SQLException e) {
+            System.out.println("No se pudo obtener los equipos.");
+            System.out.println(e.getMessage());
+        }
+        return equipos;
+    }
+    
 }
 

@@ -364,6 +364,9 @@ public class V_Trabajo extends javax.swing.JFrame {
         txt_costo.setText("");
         txt_descripcion.setText("");
         
+        selector_herramienta.setSelectedIndex(0);
+        selector_tecnico.setSelectedIndex(0);
+        
         
         btn_registrar.setEnabled(true);
         btn_editar.setEnabled(false);
