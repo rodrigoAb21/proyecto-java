@@ -131,8 +131,6 @@ public class C_Informe_Servicio implements ActionListener {
                 this.informe_seleccionado = id;
                 this.estado = vista_informe_servicio.tabla_servicios.getValueAt(fila, 4).toString();
                 
-                
-                vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());
                 vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(id));   
             }
             
@@ -149,7 +147,6 @@ public class C_Informe_Servicio implements ActionListener {
             );
             
             if (informe_seleccionado > 0) {
-                vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());
                 vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(informe_seleccionado));
             }
             vista_informe_servicio.limpiarDetalle();
@@ -164,7 +161,6 @@ public class C_Informe_Servicio implements ActionListener {
                 modelo_detalle.eliminar(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 1).toString()));
                 
                 if (informe_seleccionado > 0) {
-                    vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());
                     vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(informe_seleccionado));
                 }
                 vista_informe_servicio.limpiarDetalle();

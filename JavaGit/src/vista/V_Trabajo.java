@@ -376,6 +376,10 @@ public class V_Trabajo extends javax.swing.JFrame {
         btn_quitar.setEnabled(false);
     }
     
+     public void limpiarDetalle(){
+        selector_herramienta.setSelectedIndex(0);
+    }
+     
     public void actualizarTablaTrabajos(ArrayList<ArrayList> equipos){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla_trabajos.setModel(dtm);
