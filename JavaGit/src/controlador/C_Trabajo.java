@@ -136,7 +136,7 @@ public class C_Trabajo implements ActionListener {
             // QUITAR DETALLE
             int fila = vista_trabajo.tabla_detalle.getSelectedRow();
             if (fila >= 0) {
-                modelo_detalle.eliminar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 1).toString()));
+                modelo_detalle.eliminar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 0).toString()));
                 
                 if (this.trabajo_seleccionado > 0) {
                     vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(this.trabajo_seleccionado));

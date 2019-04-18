@@ -407,14 +407,16 @@ public class V_Trabajo extends javax.swing.JFrame {
      public void actualizarTablaDetalle(ArrayList<ArrayList> detalles){
         DefaultTableModel dfm2 = new DefaultTableModel();
         tabla_detalle.setModel(dfm2);
-        dfm2.addColumn("TRABAJO_ID");
-        dfm2.addColumn("HERRAMIENTA_ID");
+        dfm2.addColumn("HERR_ID");
+        dfm2.addColumn("DESCRIPCION");
+        dfm2.addColumn("MARCA");
         
         
-        Object[] fila = new Object[2];
+        Object[] fila = new Object[3];
         for (int i = 0; i < detalles.size(); i++) {
             fila[0] = detalles.get(i).get(0);
             fila[1] = detalles.get(i).get(1);
+            fila[2] = detalles.get(i).get(2);
             
             dfm2.addRow(fila);
         }

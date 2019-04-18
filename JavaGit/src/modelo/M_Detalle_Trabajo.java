@@ -89,41 +89,16 @@ public class M_Detalle_Trabajo {
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM detalle_trabajo WHERE trabajo_id = ? ORDER BY(herramienta_id) DESC";
+            String query = "SELECT detalle_trabajo.herramienta_id, herramienta.descripcion, herramienta.marca  FROM detalle_trabajo, herramienta WHERE trabajo_id = ? and detalle_trabajo.herramienta_id = herramienta.id ORDER BY(herramienta_id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, trabajo_id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
                 ArrayList detalle_trabajo = new ArrayList();
-                detalle_trabajo.add(rs.getInt("trabajo_id"));
-                detalle_trabajo.add(rs.getInt("herramienta_id"));
-                
-                detalles.add(detalle_trabajo);
-            }
-            
-            db.desconectar();
-            
-        } catch (SQLException e) {
-            System.out.println("No se pudo obtener los detalles.");
-            System.out.println(e.getMessage());
-        }
-        return detalles;
-    }
-    
-        public ArrayList<ArrayList> getDetallesAsc(int trabajo_id){
-        ArrayList<ArrayList> detalles = new ArrayList();
-        try {
-            db.conectar();
-            String query = "SELECT * FROM detalle_trabajo WHERE trabajo_id = ? ORDER BY(herramienta_id) ASC";
-            PreparedStatement ps = db.getConexion().prepareStatement(query);
-            ps.setInt(1, trabajo_id);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()){
-                ArrayList detalle_trabajo = new ArrayList();
-                detalle_trabajo.add(rs.getInt("trabajo_id"));
-                detalle_trabajo.add(rs.getInt("herramienta_id"));
+                detalle_trabajo.add(rs.getInt("detalle_trabajo.herramienta_id"));
+                detalle_trabajo.add(rs.getString("herramienta.descripcion"));
+                detalle_trabajo.add(rs.getString("herramienta.marca"));
                 
                 detalles.add(detalle_trabajo);
             }
