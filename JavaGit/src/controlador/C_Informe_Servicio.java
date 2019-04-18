@@ -173,7 +173,7 @@ public class C_Informe_Servicio implements ActionListener {
             // GESTIONAR TRABAJOS            
             int fila = vista_informe_servicio.tabla_detalle.getSelectedRow();
             if (fila >= 0) {
-                new C_Trabajo(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 1).toString()), this.estado);
+                new C_Trabajo(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 0).toString()), this.estado);
                 this.vista_informe_servicio.btn_actualizar.setEnabled(true);
             }
         

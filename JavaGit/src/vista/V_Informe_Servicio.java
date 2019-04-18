@@ -127,16 +127,17 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                            .addComponent(selector_equipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
                                 .addComponent(btn_agregar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_quitar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(selector_equipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
+                .addGap(163, 163, 163)
                 .addComponent(btn_trabajos)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -157,9 +158,9 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                     .addComponent(btn_quitar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_trabajos)
-                .addGap(6, 6, 6))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -218,7 +219,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -443,17 +444,21 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
      public void actualizarTablaDetalle(ArrayList<ArrayList> detalles){
         DefaultTableModel dfm2 = new DefaultTableModel();
         tabla_detalle.setModel(dfm2);
-        dfm2.addColumn("INFORME_ID");
         dfm2.addColumn("EQUIPO_ID");
+        dfm2.addColumn("NRO_SERIE");
+        dfm2.addColumn("MARCA");
+        dfm2.addColumn("TIPO");
         dfm2.addColumn("COSTO");
         dfm2.addColumn("OBSERVACION");
         
-        Object[] fila = new Object[4];
+        Object[] fila = new Object[6];
         for (int i = 0; i < detalles.size(); i++) {
             fila[0] = detalles.get(i).get(0);
             fila[1] = detalles.get(i).get(1);
             fila[2] = detalles.get(i).get(2);
             fila[3] = detalles.get(i).get(3);
+            fila[4] = detalles.get(i).get(4);
+            fila[5] = detalles.get(i).get(5);
             
             dfm2.addRow(fila);
         }

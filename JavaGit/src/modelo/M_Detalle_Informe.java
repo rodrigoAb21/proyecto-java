@@ -127,35 +127,7 @@ public class M_Detalle_Informe {
         }
     }
     
-    public ArrayList<ArrayList> getDetalles(int informe_id){
-        ArrayList<ArrayList> detalles = new ArrayList();
-        try {
-            db.conectar();
-            String query = "SELECT * FROM detalle_informe WHERE informe_id = ? ORDER BY(equipo_id) DESC";
-            PreparedStatement ps = db.getConexion().prepareStatement(query);
-            ps.setInt(1, informe_id);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()){
-                ArrayList detalle_informe = new ArrayList();
-                detalle_informe.add(rs.getInt("informe_id"));
-                detalle_informe.add(rs.getInt("equipo_id"));
-                detalle_informe.add(rs.getFloat("costo"));
-                detalle_informe.add(rs.getString("observacion"));
-                
-                detalles.add(detalle_informe);
-            }
-            
-            db.desconectar();
-            
-        } catch (SQLException e) {
-            System.out.println("No se pudo obtener los detalles.");
-            System.out.println(e.getMessage());
-        }
-        return detalles;
-    }
-    
-        public ArrayList<ArrayList> getDetallesAsc(int informe_id){
+    public ArrayList<ArrayList> getDetallesAsc(int informe_id){
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
@@ -183,17 +155,25 @@ public class M_Detalle_Informe {
         return detalles;
     }
     
-    public float calcularTotal(int informe_id){
-        float resultado = 0f;
+        public ArrayList<ArrayList> getDetalles(int informe_id){
+        ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM detalle_informe WHERE informe_id = ?";
+            String query = "SELECT detalle_informe.equipo_id, equipo.nro_serie, equipo.marca, tipo.nombre, detalle_informe.costo, detalle_informe.observacion FROM detalle_informe, equipo, tipo WHERE detalle_informe.informe_id = ? and detalle_informe.equipo_id = equipo.id and equipo.tipo_id = tipo.id ORDER BY(detalle_informe.equipo_id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, informe_id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                resultado = resultado + rs.getFloat("costo");
+                ArrayList detalle_informe = new ArrayList();
+                detalle_informe.add(rs.getInt("detalle_informe.equipo_id"));
+                detalle_informe.add(rs.getString("equipo.nro_serie"));
+                detalle_informe.add(rs.getString("equipo.marca"));
+                detalle_informe.add(rs.getString("tipo.nombre"));
+                detalle_informe.add(rs.getFloat("detalle_informe.costo"));
+                detalle_informe.add(rs.getString("detalle_informe.observacion"));
+                
+                detalles.add(detalle_informe);
             }
             
             db.desconectar();
@@ -202,7 +182,7 @@ public class M_Detalle_Informe {
             System.out.println("No se pudo obtener los detalles.");
             System.out.println(e.getMessage());
         }
-        return resultado;
+        return detalles;
     }
     
 }
