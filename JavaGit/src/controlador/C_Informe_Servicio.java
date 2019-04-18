@@ -67,7 +67,7 @@ public class C_Informe_Servicio implements ActionListener {
                     vista_informe_servicio.txt_fecha_finalizacion.getText(),
                     0f,
                     "Activo",
-                    Integer.parseInt(vista_informe_servicio.selector_cliente.getSelectedItem().toString().split(",")[0])
+                    Integer.parseInt(vista_informe_servicio.selector_cliente.getSelectedItem().toString().split("-")[0].trim())
             );
             
             vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());
@@ -82,7 +82,7 @@ public class C_Informe_Servicio implements ActionListener {
                     Integer.parseInt(vista_informe_servicio.txt_id.getText()),
                     vista_informe_servicio.txt_fecha_recepcion.getText(),
                     vista_informe_servicio.txt_fecha_finalizacion.getText(),
-                    Integer.parseInt(vista_informe_servicio.selector_cliente.getSelectedItem().toString().split(",")[0])
+                    Integer.parseInt(vista_informe_servicio.selector_cliente.getSelectedItem().toString().split("-")[0].trim())
             );
             
             vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());

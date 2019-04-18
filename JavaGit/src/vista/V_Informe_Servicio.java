@@ -352,8 +352,8 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         
         DefaultComboBoxModel c = (DefaultComboBoxModel) selector_cliente.getModel();
         for (int i = 0; i < c.getSize(); i++) {
-            String tipo[] = selector_cliente.getItemAt(i).toString().split(",");
-            if (m.getValueAt(fila, 5).toString().equals(tipo[0])) {
+            String tipo[] = selector_cliente.getItemAt(i).toString().split("-");
+            if (m.getValueAt(fila, 5).toString().equals(tipo[1].trim())) {
                 selector_cliente.setSelectedIndex(i);
                 break;
             }
@@ -479,7 +479,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
     public void cargarSelectorCliente(ArrayList<ArrayList> clientes) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < clientes.size(); i++) {
-            t.add(clientes.get(i).get(0) + ", " + clientes.get(i).get(2));
+            t.add(clientes.get(i).get(0) + " - " + clientes.get(i).get(2));
         }
         this.selector_cliente.setModel(new DefaultComboBoxModel(t.toArray()));
     }

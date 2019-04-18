@@ -182,8 +182,8 @@ public class V_Equipo extends javax.swing.JFrame {
         
         DefaultComboBoxModel c = (DefaultComboBoxModel) selector_tipo.getModel();
         for (int i = 0; i < c.getSize(); i++) {
-            String tipo[] = selector_tipo.getItemAt(i).toString().split(",");
-            if (m.getValueAt(fila, 4).toString().equals(tipo[0])) {
+            String tipo[] = selector_tipo.getItemAt(i).toString().split("-");
+            if (m.getValueAt(fila, 4).toString().equals(tipo[1].trim())) {
                 selector_tipo.setSelectedIndex(i);
                 break;
             }
@@ -234,7 +234,7 @@ public class V_Equipo extends javax.swing.JFrame {
     public void cargarSelector(ArrayList<ArrayList> tipos) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < tipos.size(); i++) {
-            t.add(tipos.get(i).get(0) + ", " + tipos.get(i).get(1));
+            t.add(tipos.get(i).get(0) + " - " + tipos.get(i).get(1));
         }
         this.selector_tipo.setModel(new DefaultComboBoxModel(t.toArray()));
     }

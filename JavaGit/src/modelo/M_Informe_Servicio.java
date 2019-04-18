@@ -154,7 +154,13 @@ public class M_Informe_Servicio {
         ArrayList<ArrayList> informe_servicios = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM informe_servicio ORDER BY(id) DESC";
+            String query = "SELECT informe_servicio.id, " +
+                    "informe_servicio.fecha_recepcion, " + 
+                    " informe_servicio.fecha_finalizacion, " + 
+                    "informe_servicio.costo_total, informe_servicio.estado, " + 
+                    "cliente.nombre FROM informe_servicio, cliente " + 
+                    "WHERE informe_servicio.cliente_id = cliente.id " + 
+                    "ORDER BY(informe_servicio.id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
@@ -165,7 +171,7 @@ public class M_Informe_Servicio {
                 informe_servicio.add(rs.getString("fecha_finalizacion"));
                 informe_servicio.add(rs.getFloat("costo_total"));
                 informe_servicio.add(rs.getString("estado"));
-                informe_servicio.add(rs.getInt("cliente_id"));
+                informe_servicio.add(rs.getString("nombre"));
                 
                 informe_servicios.add(informe_servicio);
             }

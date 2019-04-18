@@ -47,7 +47,7 @@ public class C_Equipo implements ActionListener {
                 vista_equipo.txt_modelo.getText(),
                 vista_equipo.txt_nro_serie.getText(),
                 vista_equipo.txt_marca.getText(),
-                Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split(",")[0])
+                Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split("-")[0].trim())
             );
             
             vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
@@ -61,7 +61,7 @@ public class C_Equipo implements ActionListener {
                 vista_equipo.txt_modelo.getText(),
                 vista_equipo.txt_nro_serie.getText(),
                 vista_equipo.txt_marca.getText(),
-                Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split(",")[0])
+                Integer.parseInt(vista_equipo.selector_tipo.getSelectedItem().toString().split("-")[0].trim())
             );
             
             vista_equipo.actualizarTabla(modelo_equipo.getEquipos());
