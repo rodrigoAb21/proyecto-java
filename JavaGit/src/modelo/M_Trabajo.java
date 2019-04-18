@@ -190,22 +190,21 @@ public class M_Trabajo {
         ArrayList<ArrayList> trabajos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM trabajo WHERE informe_id = " + 
-                    informe_id + " and equipo_id = " + equipo_id 
+            String query = "SELECT trabajo.id, trabajo.fecha_inicio, trabajo.fecha_fin, trabajo.costo, trabajo.descripcion, tecnico.nombre, tecnico.apellido  FROM trabajo, tecnico WHERE trabajo.informe_id = " + 
+                    informe_id + " and trabajo.equipo_id = " + equipo_id + " and trabajo.tecnico_id = tecnico.id " 
                     + " ORDER BY(id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
                 ArrayList trabajo = new ArrayList();
-                trabajo.add(rs.getInt("id"));
-                trabajo.add(rs.getString("fecha_inicio"));
-                trabajo.add(rs.getString("fecha_fin"));
-                trabajo.add(rs.getFloat("costo"));
-                trabajo.add(rs.getString("descripcion"));
-                trabajo.add(rs.getInt("tecnico_id"));
-                trabajo.add(rs.getInt("informe_id"));
-                trabajo.add(rs.getInt("equipo_id"));
+                trabajo.add(rs.getInt("trabajo.id"));
+                trabajo.add(rs.getString("trabajo.fecha_inicio"));
+                trabajo.add(rs.getString("trabajo.fecha_fin"));
+                trabajo.add(rs.getFloat("trabajo.costo"));
+                trabajo.add(rs.getString("trabajo.descripcion"));
+                trabajo.add(rs.getString("tecnico.nombre"));
+                trabajo.add(rs.getString("tecnico.apellido"));
                 
                 trabajos.add(trabajo);
             }

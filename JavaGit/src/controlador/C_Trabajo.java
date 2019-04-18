@@ -70,7 +70,7 @@ public class C_Trabajo implements ActionListener {
                     vista_trabajo.txt_fecha_fin.getText(),
                     Float.parseFloat(vista_trabajo.txt_costo.getText()),
                     vista_trabajo.txt_descripcion.getText(),
-                    Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split(",")[0]),
+                    Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split("-")[0].trim()),
                     this.informe_id,
                     this.equipo_id
             );
@@ -89,7 +89,7 @@ public class C_Trabajo implements ActionListener {
                     vista_trabajo.txt_fecha_fin.getText(),
                     Float.parseFloat(vista_trabajo.txt_costo.getText()),
                     vista_trabajo.txt_descripcion.getText(),
-                    Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split(",")[0]),
+                    Integer.parseInt(vista_trabajo.selector_tecnico.getSelectedItem().toString().split("-")[0].trim()),
                     this.informe_id,
                     this.equipo_id
             );

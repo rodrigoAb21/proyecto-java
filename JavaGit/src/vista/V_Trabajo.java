@@ -329,8 +329,8 @@ public class V_Trabajo extends javax.swing.JFrame {
         
         DefaultComboBoxModel c = (DefaultComboBoxModel) selector_tecnico.getModel();
         for (int i = 0; i < c.getSize(); i++) {
-            String tipo[] = selector_tecnico.getItemAt(i).toString().split(",");
-            if (m.getValueAt(fila, 5).toString().equals(tipo[0])) {
+            String tipo[] = selector_tecnico.getItemAt(i).toString().split("-");
+            if (m.getValueAt(fila, 5).toString().equals(tipo[1].trim())) {
                 selector_tecnico.setSelectedIndex(i);
                 break;
             }
@@ -397,7 +397,7 @@ public class V_Trabajo extends javax.swing.JFrame {
             fila[2] = equipos.get(i).get(2);
             fila[3] = equipos.get(i).get(3);
             fila[4] = equipos.get(i).get(4);
-            fila[5] = equipos.get(i).get(5);
+            fila[5] = equipos.get(i).get(5) + " " + equipos.get(i).get(6);
             
             dtm.addRow(fila);
         }
@@ -432,7 +432,7 @@ public class V_Trabajo extends javax.swing.JFrame {
     public void cargarSelectorTecnico(ArrayList<ArrayList> tecnicos) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < tecnicos.size(); i++) {
-            t.add(tecnicos.get(i).get(0) + ", " + tecnicos.get(i).get(2) + " " 
+            t.add(tecnicos.get(i).get(0) + " - " + tecnicos.get(i).get(2) + " " 
                     + tecnicos.get(i).get(3));
         }
         this.selector_tecnico.setModel(new DefaultComboBoxModel(t.toArray()));
