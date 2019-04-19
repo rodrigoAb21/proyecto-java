@@ -158,10 +158,11 @@ public class C_Informe_Servicio implements ActionListener {
             // QUITAR DETALLE
             int fila = vista_informe_servicio.tabla_detalle.getSelectedRow();
             if (fila >= 0) {
-                modelo_detalle.eliminar(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 1).toString()));
+                modelo_detalle.eliminar(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 0).toString()));
                 
                 if (informe_seleccionado > 0) {
                     vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(informe_seleccionado));
+                    vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());
                 }
                 vista_informe_servicio.limpiarDetalle();
             }

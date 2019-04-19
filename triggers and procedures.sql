@@ -18,7 +18,7 @@ BEGIN
 
 -- El SELECT que vamos a ejecutar
   DECLARE trabajos_cursor CURSOR FOR 
-    SELECT costo FROM trabajo WHERE informe_id=i_id and equipo_id=e_id;
+    SELECT costo FROM trabajo WHERE detalle_informe_informe_servicio_id=i_id and detalle_informe_equipo_id=e_id;
 
 -- Condición de salida
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=1;
@@ -38,7 +38,7 @@ BEGIN
 SET 
     costo = resultado
 WHERE
-    informe_id = i_id AND equipo_id = e_id;
+    informe_servicio_id = i_id AND equipo_id = e_id;
 
   CLOSE trabajos_cursor;
 END$$
@@ -63,7 +63,7 @@ BEGIN
 
 -- El SELECT que vamos a ejecutar
   DECLARE detalles_cursor CURSOR FOR 
-    SELECT costo FROM detalle_informe WHERE informe_id=i_id;
+    SELECT costo FROM detalle_informe WHERE informe_servicio_id=i_id;
 
 -- Condición de salida
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin=1;
@@ -105,6 +105,8 @@ DELIMITER ;
 
 
 
+
+
 -- DISPARADORES
 
 DROP trigger IF EXISTS `disp_actualizar_insert`;
@@ -114,8 +116,8 @@ USE `arquitectura`$$
 CREATE trigger disp_actualizar_insert after insert on trabajo
 for each row
 BEGIN
-	call proc_actualizar_detalle_informe(new.informe_id, new.equipo_id);
-    call proc_actualizar_informe(new.informe_id);
+	call proc_actualizar_detalle_informe(new.detalle_informe_informe_servicio_id, new.detalle_informe_equipo_id);
+    call proc_actualizar_informe(new.detalle_informe_informe_servicio_id);
 END$$
 
 DELIMITER ;
@@ -129,8 +131,8 @@ USE `arquitectura`$$
 CREATE trigger disp_actualizar_update after update on trabajo
 for each row
 BEGIN
-	call proc_actualizar_detalle_informe(old.informe_id, old.equipo_id);
-    call proc_actualizar_informe(old.informe_id);
+	call proc_actualizar_detalle_informe(old.detalle_informe_informe_servicio_id, old.detalle_informe_equipo_id);
+    call proc_actualizar_informe(old.detalle_informe_informe_servicio_id);
 END$$
 
 DELIMITER ;
@@ -143,8 +145,9 @@ USE `arquitectura`$$
 CREATE trigger disp_actualizar_delete after delete on trabajo
 for each row
 BEGIN
-	call proc_actualizar_detalle_informe(old.informe_id, old.equipo_id);
-    call proc_actualizar_informe(old.informe_id);
+	call proc_actualizar_detalle_informe(old.detalle_informe_informe_servicio_id, old.detalle_informe_equipo_id);
+    call proc_actualizar_informe(old.detalle_informe_informe_servicio_id);
 END$$
 
 DELIMITER ;
+

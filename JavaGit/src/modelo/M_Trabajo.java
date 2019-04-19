@@ -21,8 +21,8 @@ public class M_Trabajo {
     private float costo;
     private String descripcion;
     private int tecnico_id;
-    private int informe_id;
-    private int equipo_id;
+    private int detalle_informe_informe_servicio_id;
+    private int detalle_informe_equipo_id;
     private ConexionBD db;
 
        
@@ -33,8 +33,8 @@ public class M_Trabajo {
         this.costo = 0.0f;
         this.descripcion = "";
         this.tecnico_id = 0;
-        this.informe_id = 0;
-        this.equipo_id = 0;
+        this.detalle_informe_informe_servicio_id = 0;
+        this.detalle_informe_equipo_id = 0;
         db = new ConexionBD();
     }
 
@@ -87,19 +87,19 @@ public class M_Trabajo {
     }
 
     public int getInforme_id() {
-        return informe_id;
+        return detalle_informe_informe_servicio_id;
     }
 
-    public void setInforme_id(int informe_id) {
-        this.informe_id = informe_id;
+    public void setInforme_id(int detalle_informe_informe_servicio_id) {
+        this.detalle_informe_informe_servicio_id = detalle_informe_informe_servicio_id;
     }
 
     public int getEquipo_id() {
-        return equipo_id;
+        return detalle_informe_equipo_id;
     }
 
-    public void setEquipo_id(int equipo_id) {
-        this.equipo_id = equipo_id;
+    public void setEquipo_id(int detalle_informe_equipo_id) {
+        this.detalle_informe_equipo_id = detalle_informe_equipo_id;
     }
     
     
@@ -109,19 +109,19 @@ public class M_Trabajo {
     
     // METODOS
     public boolean registrar(String fecha_inicio, String fecha_fin, 
-            float costo, String descripcion, int tecnico_id, int informe_id, int equipo_id){
+            float costo, String descripcion, int tecnico_id, int detalle_informe_informe_servicio_id, int detalle_informe_equipo_id){
         try {
             db.conectar();
             String sql = "INSERT INTO trabajo (fecha_inicio, fecha_fin, " + 
-                    "costo, descripcion, tecnico_id, informe_id, equipo_id) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
+                    "costo, descripcion, tecnico_id, detalle_informe_informe_servicio_id, detalle_informe_equipo_id) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setString(1, fecha_inicio);
             ps.setString(2, fecha_fin);
             ps.setFloat(3, costo);
             ps.setString(4, descripcion);
             ps.setInt(5, tecnico_id);
-            ps.setInt(6, informe_id);
-            ps.setInt(7, equipo_id);
+            ps.setInt(6, detalle_informe_informe_servicio_id);
+            ps.setInt(7, detalle_informe_equipo_id);
             
             int i = ps.executeUpdate();
             db.desconectar();
@@ -135,7 +135,7 @@ public class M_Trabajo {
     }
     
     public boolean editar(int id, String fecha_inicio, String fecha_fin, 
-            float costo, String descripcion, int tecnico_id, int informe_id, int equipo_id){
+            float costo, String descripcion, int tecnico_id, int detalle_informe_informe_servicio_id, int detalle_informe_equipo_id){
          try {
             db.conectar();
             String sql = "UPDATE trabajo SET " + 
@@ -144,8 +144,8 @@ public class M_Trabajo {
                     "costo = ?, " +
                     "descripcion = ?, " +
                     "tecnico_id = ?, " + 
-                    "informe_id = ?, " + 
-                    "equipo_id = ? " + 
+                    "detalle_informe_informe_servicio_id = ?, " + 
+                    "detalle_informe_equipo_id = ? " + 
                     "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setString(1, fecha_inicio);
@@ -153,8 +153,8 @@ public class M_Trabajo {
             ps.setFloat(3, costo);
             ps.setString(4, descripcion);
             ps.setInt(5, tecnico_id);
-            ps.setInt(6, informe_id);
-            ps.setInt(7, equipo_id);
+            ps.setInt(6, detalle_informe_informe_servicio_id);
+            ps.setInt(7, detalle_informe_equipo_id);
             ps.setInt(8, id);
             
             int i = ps.executeUpdate();
@@ -186,12 +186,12 @@ public class M_Trabajo {
         }
     }
     
-    public ArrayList<ArrayList> getTrabajos(int informe_id, int equipo_id){
+    public ArrayList<ArrayList> getTrabajos(int detalle_informe_informe_servicio_id, int detalle_informe_equipo_id){
         ArrayList<ArrayList> trabajos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT trabajo.id, trabajo.fecha_inicio, trabajo.fecha_fin, trabajo.costo, trabajo.descripcion, tecnico.nombre, tecnico.apellido  FROM trabajo, tecnico WHERE trabajo.informe_id = " + 
-                    informe_id + " and trabajo.equipo_id = " + equipo_id + " and trabajo.tecnico_id = tecnico.id " 
+            String query = "SELECT trabajo.id, trabajo.fecha_inicio, trabajo.fecha_fin, trabajo.costo, trabajo.descripcion, tecnico.nombre, tecnico.apellido  FROM trabajo, tecnico WHERE trabajo.detalle_informe_informe_servicio_id = " + 
+                    detalle_informe_informe_servicio_id + " and trabajo.detalle_informe_equipo_id = " + detalle_informe_equipo_id + " and trabajo.tecnico_id = tecnico.id " 
                     + " ORDER BY(id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();

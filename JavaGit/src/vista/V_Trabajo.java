@@ -353,6 +353,8 @@ public class V_Trabajo extends javax.swing.JFrame {
             btn_limpiar.setEnabled(false);
         }
         
+        limpiarTablaDetalle();
+        
     }//GEN-LAST:event_tabla_trabajosMouseClicked
         
     
@@ -429,6 +431,11 @@ public class V_Trabajo extends javax.swing.JFrame {
             btn_agregar.setEnabled(false);
             btn_quitar.setEnabled(false);
          }
+    }
+     
+    public void limpiarTablaDetalle(){
+       DefaultTableModel dfm2 = new DefaultTableModel();
+        tabla_detalle.setModel(dfm2);
     }
     
     public void cargarSelectorTecnico(ArrayList<ArrayList> tecnicos) {

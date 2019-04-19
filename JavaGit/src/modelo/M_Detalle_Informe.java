@@ -63,13 +63,13 @@ public class M_Detalle_Informe {
     
         
     // METODOS
-    public boolean registrar(int informe_id, int equipo_id, float costo, String observacion){
+    public boolean registrar(int informe_servicio_id, int equipo_id, float costo, String observacion){
         try {
             db.conectar();
-            String sql = "INSERT INTO detalle_informe (informe_id, equipo_id," + 
+            String sql = "INSERT INTO detalle_informe (informe_servicio_id, equipo_id," + 
                     " costo, observacion) VALUES (?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, informe_id);
+            ps.setInt(1, informe_servicio_id);
             ps.setInt(2, equipo_id);
             ps.setFloat(3, costo);
             ps.setString(4, observacion);
@@ -85,16 +85,16 @@ public class M_Detalle_Informe {
         }
     }
     
-    public boolean editar(int informe_id, int equipo_id, float costo, String observacion){
+    public boolean editar(int informe_servicio_id, int equipo_id, float costo, String observacion){
          try {
             db.conectar();
             String sql = "UPDATE detalle_informe SET " + 
                     "costo = ?, " +
-                    "observacion = ? " + "WHERE informe_id = ? AND equipo_id = ?";
+                    "observacion = ? " + "WHERE informe_servicio_id = ? AND equipo_id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setFloat(1, costo);
             ps.setString(2, observacion);
-            ps.setInt(3, informe_id);
+            ps.setInt(3, informe_servicio_id);
             ps.setInt(4, equipo_id);
             
             int i = ps.executeUpdate();
@@ -108,12 +108,12 @@ public class M_Detalle_Informe {
         }
     }
     
-    public boolean eliminar(int informe_id, int equipo_id){
+    public boolean eliminar(int informe_servicio_id, int equipo_id){
            try {
             db.conectar();
-            String sql = "DELETE FROM detalle_informe WHERE informe_id = ? AND equipo_id = ?";
+            String sql = "DELETE FROM detalle_informe WHERE detalle_informe.informe_servicio_id = ? AND detalle_informe.equipo_id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setInt(1, informe_id);
+            ps.setInt(1, informe_servicio_id);
             ps.setInt(2, equipo_id);
             
             int i = ps.executeUpdate();
@@ -121,7 +121,7 @@ public class M_Detalle_Informe {
             return i > 0;
             
         } catch (SQLException e) {
-            System.out.println("No se pudo eliminar el detalle");
+            System.out.println("No se pudo eliminar el detalle del informe");
             System.out.println(e.getMessage());
             return false;
         }
@@ -131,14 +131,14 @@ public class M_Detalle_Informe {
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM detalle_informe WHERE informe_id = ? ORDER BY(equipo_id) ASC";
+            String query = "SELECT * FROM detalle_informe WHERE informe_servicio_id = ? ORDER BY(equipo_id) ASC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, informe_id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
                 ArrayList detalle_informe = new ArrayList();
-                detalle_informe.add(rs.getInt("informe_id"));
+                detalle_informe.add(rs.getInt("informe_servicio_id"));
                 detalle_informe.add(rs.getInt("equipo_id"));
                 detalle_informe.add(rs.getFloat("costo"));
                 detalle_informe.add(rs.getString("observacion"));
@@ -159,7 +159,7 @@ public class M_Detalle_Informe {
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT detalle_informe.equipo_id, equipo.nro_serie, equipo.marca, tipo.nombre, detalle_informe.costo, detalle_informe.observacion FROM detalle_informe, equipo, tipo WHERE detalle_informe.informe_id = ? and detalle_informe.equipo_id = equipo.id and equipo.tipo_id = tipo.id ORDER BY(detalle_informe.equipo_id) DESC";
+            String query = "SELECT detalle_informe.equipo_id, equipo.nro_serie, equipo.marca, tipo.nombre, detalle_informe.costo, detalle_informe.observacion FROM detalle_informe, equipo, tipo WHERE detalle_informe.informe_servicio_id = ? and detalle_informe.equipo_id = equipo.id and equipo.tipo_id = tipo.id ORDER BY(detalle_informe.equipo_id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, informe_id);
             ResultSet rs = ps.executeQuery();
