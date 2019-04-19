@@ -115,12 +115,21 @@ public class C_Trabajo implements ActionListener {
             vista_trabajo.limpiarCampos();
             
             
-            
+        } else if (e.getSource() == vista_trabajo.btn_cargar_detalle) {
+        // CARGAR DETALLE
+        int fila = vista_trabajo.tabla_trabajos.getSelectedRow();
+        if (fila >= 0) {
+            int id = Integer.parseInt(vista_trabajo.tabla_trabajos.getValueAt(fila, 0).toString());
+            this.trabajo_seleccionado = id;
+
+            vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
+
+        }
             
         } else if (e.getSource() == vista_trabajo.btn_agregar) {
             // AGREGAR DETALLE
             
-            modelo_detalle.registrar(
+            modelo_detalle.agregar(
                     this.trabajo_seleccionado,
                     Integer.parseInt(vista_trabajo.selector_herramienta.getSelectedItem().toString().split(",")[0])
             );
@@ -136,7 +145,7 @@ public class C_Trabajo implements ActionListener {
             // QUITAR DETALLE
             int fila = vista_trabajo.tabla_detalle.getSelectedRow();
             if (fila >= 0) {
-                modelo_detalle.eliminar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 0).toString()));
+                modelo_detalle.quitar(this.trabajo_seleccionado, Integer.parseInt(vista_trabajo.tabla_detalle.getValueAt(fila, 0).toString()));
                 
                 if (this.trabajo_seleccionado > 0) {
                     vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(this.trabajo_seleccionado));
@@ -146,16 +155,7 @@ public class C_Trabajo implements ActionListener {
             
             
             
-        } else if (e.getSource() == vista_trabajo.btn_cargar_detalle) {
-            // CARGAR DETALLE
-            int fila = vista_trabajo.tabla_trabajos.getSelectedRow();
-            if (fila >= 0) {
-                int id = Integer.parseInt(vista_trabajo.tabla_trabajos.getValueAt(fila, 0).toString());
-                this.trabajo_seleccionado = id;
-                
-                vista_trabajo.actualizarTablaDetalle(modelo_detalle.getDetalles(id));
-
-            }
+        
         }
     }
     

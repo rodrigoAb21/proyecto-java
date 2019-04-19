@@ -139,7 +139,7 @@ public class C_Informe_Servicio implements ActionListener {
                         
         } else if (e.getSource() == vista_informe_servicio.btn_agregar) {
             // AGREGAR DETALLE
-            modelo_detalle.registrar(
+            modelo_detalle.agregar(
                     this.informe_seleccionado,
                     Integer.parseInt(vista_informe_servicio.selector_equipo.getSelectedItem().toString().split("-")[0].trim()),
                     0f,
@@ -158,11 +158,11 @@ public class C_Informe_Servicio implements ActionListener {
             // QUITAR DETALLE
             int fila = vista_informe_servicio.tabla_detalle.getSelectedRow();
             if (fila >= 0) {
-                modelo_detalle.eliminar(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 0).toString()));
+                modelo_detalle.quitar(this.informe_seleccionado, Integer.parseInt(vista_informe_servicio.tabla_detalle.getValueAt(fila, 0).toString()));
                 
                 if (informe_seleccionado > 0) {
-                    vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(informe_seleccionado));
                     vista_informe_servicio.actualizarTablaInformes(modelo_informe_servicio.getInformes());
+                    vista_informe_servicio.actualizarTablaDetalle(modelo_detalle.getDetalles(informe_seleccionado));
                 }
                 vista_informe_servicio.limpiarDetalle();
             }

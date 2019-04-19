@@ -63,7 +63,7 @@ public class M_Detalle_Informe {
     
         
     // METODOS
-    public boolean registrar(int informe_servicio_id, int equipo_id, float costo, String observacion){
+    public boolean agregar(int informe_servicio_id, int equipo_id, float costo, String observacion){
         try {
             db.conectar();
             String sql = "INSERT INTO detalle_informe (informe_servicio_id, equipo_id," + 
@@ -108,7 +108,7 @@ public class M_Detalle_Informe {
         }
     }
     
-    public boolean eliminar(int informe_servicio_id, int equipo_id){
+    public boolean quitar(int informe_servicio_id, int equipo_id){
            try {
             db.conectar();
             String sql = "DELETE FROM detalle_informe WHERE " + 

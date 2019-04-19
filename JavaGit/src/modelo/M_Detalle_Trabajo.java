@@ -45,7 +45,7 @@ public class M_Detalle_Trabajo {
     
         
     // METODOS
-    public boolean registrar(int trabajo_id, int herramienta_id){
+    public boolean agregar(int trabajo_id, int herramienta_id){
         try {
             db.conectar();
             String sql = "INSERT INTO detalle_trabajo (trabajo_id, herramienta_id)" + 
@@ -66,7 +66,7 @@ public class M_Detalle_Trabajo {
     }
     
     
-    public boolean eliminar(int trabajo_id, int herramienta_id){
+    public boolean quitar(int trabajo_id, int herramienta_id){
            try {
             db.conectar();
             String sql = "DELETE FROM detalle_trabajo WHERE trabajo_id = ? AND herramienta_id = ?";
