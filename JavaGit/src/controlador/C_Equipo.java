@@ -82,8 +82,5 @@ public class C_Equipo implements ActionListener {
         
     }
     
-    public static void main(String[] args) {
-        C_Equipo cc = new C_Equipo();
-    }
-    
+   
 }

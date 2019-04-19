@@ -83,8 +83,5 @@ public class C_Tecnico implements ActionListener {
         
     }
     
-    public static void main(String[] args) {
-        C_Tecnico cc = new C_Tecnico();
-    }
-    
+
 }

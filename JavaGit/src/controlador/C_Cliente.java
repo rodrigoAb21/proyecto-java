@@ -81,8 +81,4 @@ public class C_Cliente implements ActionListener {
         
     }
     
-    public static void main(String[] args) {
-        C_Cliente cc = new C_Cliente();
-    }
-    
 }

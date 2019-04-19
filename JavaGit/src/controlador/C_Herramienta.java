@@ -77,7 +77,5 @@ public class C_Herramienta implements ActionListener {
         
     }
     
-    public static void main(String[] args) {
-        C_Herramienta c = new C_Herramienta();
-    }
+
 }

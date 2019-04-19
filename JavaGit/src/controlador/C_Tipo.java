@@ -73,7 +73,5 @@ public class C_Tipo implements ActionListener {
         }
     }
     
-    public static void main(String[] args) {
-        C_Tipo c = new C_Tipo();
-    }
+  
 }
