@@ -111,7 +111,8 @@ public class M_Detalle_Informe {
     public boolean eliminar(int informe_servicio_id, int equipo_id){
            try {
             db.conectar();
-            String sql = "DELETE FROM detalle_informe WHERE detalle_informe.informe_servicio_id = ? AND detalle_informe.equipo_id = ?";
+            String sql = "DELETE FROM detalle_informe WHERE " + 
+                    "detalle_informe.informe_servicio_id = ? AND detalle_informe.equipo_id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setInt(1, informe_servicio_id);
             ps.setInt(2, equipo_id);
@@ -131,7 +132,8 @@ public class M_Detalle_Informe {
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM detalle_informe WHERE informe_servicio_id = ? ORDER BY(equipo_id) ASC";
+            String query = "SELECT * FROM detalle_informe WHERE informe_servicio_id = ?" + 
+                    " ORDER BY(equipo_id) ASC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, informe_id);
             ResultSet rs = ps.executeQuery();
@@ -159,7 +161,11 @@ public class M_Detalle_Informe {
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT detalle_informe.equipo_id, equipo.nro_serie, equipo.marca, tipo.nombre, detalle_informe.costo, detalle_informe.observacion FROM detalle_informe, equipo, tipo WHERE detalle_informe.informe_servicio_id = ? and detalle_informe.equipo_id = equipo.id and equipo.tipo_id = tipo.id ORDER BY(detalle_informe.equipo_id) DESC";
+            String query = "SELECT detalle_informe.equipo_id, equipo.nro_serie, " + 
+                    "equipo.marca, tipo.nombre, detalle_informe.costo, detalle_informe.observacion " + 
+                    "FROM detalle_informe, equipo, tipo WHERE detalle_informe.informe_servicio_id = ? " + 
+                    "and detalle_informe.equipo_id = equipo.id and equipo.tipo_id = tipo.id " + 
+                    "ORDER BY(detalle_informe.equipo_id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, informe_id);
             ResultSet rs = ps.executeQuery();

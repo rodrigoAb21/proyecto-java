@@ -182,7 +182,11 @@ public class V_Trabajo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel5.setText("TECNICO");
 
+        txt_fecha_inicio.setText("DD/MM/AAAA");
+
         selector_tecnico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txt_fecha_fin.setText("DD/MM/AAAA");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel10.setText("F. FIN");
@@ -376,6 +380,8 @@ public class V_Trabajo extends javax.swing.JFrame {
         btn_cargar_detalle.setEnabled(false);
         btn_agregar.setEnabled(false);
         btn_quitar.setEnabled(false);
+        
+        limpiarTablaDetalle();
     }
     
      public void limpiarDetalle(){
@@ -403,7 +409,7 @@ public class V_Trabajo extends javax.swing.JFrame {
             
             dtm.addRow(fila);
         }
-        
+        limpiarTablaDetalle();
     }
     
      public void actualizarTablaDetalle(ArrayList<ArrayList> detalles){
@@ -434,8 +440,9 @@ public class V_Trabajo extends javax.swing.JFrame {
     }
      
     public void limpiarTablaDetalle(){
+       selector_herramienta.setSelectedIndex(0);
        DefaultTableModel dfm2 = new DefaultTableModel();
-        tabla_detalle.setModel(dfm2);
+       tabla_detalle.setModel(dfm2);
     }
     
     public void cargarSelectorTecnico(ArrayList<ArrayList> tecnicos) {

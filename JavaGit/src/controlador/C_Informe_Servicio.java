@@ -141,7 +141,7 @@ public class C_Informe_Servicio implements ActionListener {
             // AGREGAR DETALLE
             modelo_detalle.registrar(
                     this.informe_seleccionado,
-                    Integer.parseInt(vista_informe_servicio.selector_equipo.getSelectedItem().toString().split(",")[0]),
+                    Integer.parseInt(vista_informe_servicio.selector_equipo.getSelectedItem().toString().split("-")[0].trim()),
                     0f,
                     vista_informe_servicio.txt_observacion.getText().toString()        
             );

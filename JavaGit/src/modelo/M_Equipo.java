@@ -146,7 +146,9 @@ public class M_Equipo {
         ArrayList<ArrayList> equipos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT equipo.id, equipo.modelo, equipo.nro_serie, equipo.marca, tipo.nombre FROM equipo,tipo WHERE tipo.id = equipo.tipo_id ORDER BY(equipo.id) DESC";
+            String query = "SELECT equipo.id, equipo.modelo, equipo.nro_serie, " + 
+                    "equipo.marca, tipo.nombre FROM equipo,tipo WHERE " + 
+                    "tipo.id = equipo.tipo_id ORDER BY(equipo.id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
@@ -174,17 +176,18 @@ public class M_Equipo {
         ArrayList<ArrayList> equipos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM equipo ORDER BY(id) ASC";
+            String query = "SELECT equipo.id, equipo.modelo, equipo.nro_serie, " + 
+                    "equipo.marca, tipo.nombre FROM equipo,tipo WHERE " + 
+                    "tipo.id = equipo.tipo_id ORDER BY(equipo.id) ASC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
                 ArrayList equipo = new ArrayList();
-                equipo.add(rs.getInt("id"));
-                equipo.add(rs.getString("modelo"));
-                equipo.add(rs.getString("nro_serie"));
-                equipo.add(rs.getString("marca"));
-                equipo.add(rs.getInt("tipo_id"));
+                equipo.add(rs.getInt("equipo.id"));
+                equipo.add(rs.getString("equipo.nro_serie"));
+                equipo.add(rs.getString("equipo.marca"));
+                equipo.add(rs.getString("tipo.nombre"));
                 
                 equipos.add(equipo);
             }

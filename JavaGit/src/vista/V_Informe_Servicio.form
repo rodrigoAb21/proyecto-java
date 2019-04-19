@@ -251,7 +251,7 @@
                                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="txt_id" max="32767" attributes="0"/>
-                                              <Component id="txt_fecha_recepcion" max="32767" attributes="0"/>
+                                              <Component id="txt_fecha_recepcion" pref="184" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -402,6 +402,9 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_fecha_finalizacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DD/MM/AAAA"/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -412,6 +415,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_fecha_recepcion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="DD/MM/AAAA"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>

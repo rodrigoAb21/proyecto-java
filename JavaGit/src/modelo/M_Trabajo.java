@@ -113,7 +113,8 @@ public class M_Trabajo {
         try {
             db.conectar();
             String sql = "INSERT INTO trabajo (fecha_inicio, fecha_fin, " + 
-                    "costo, descripcion, tecnico_id, detalle_informe_informe_servicio_id, detalle_informe_equipo_id) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
+                    "costo, descripcion, tecnico_id, detalle_informe_informe_servicio_id," + 
+                    " detalle_informe_equipo_id) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setString(1, fecha_inicio);
             ps.setString(2, fecha_fin);
@@ -190,9 +191,12 @@ public class M_Trabajo {
         ArrayList<ArrayList> trabajos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT trabajo.id, trabajo.fecha_inicio, trabajo.fecha_fin, trabajo.costo, trabajo.descripcion, tecnico.nombre, tecnico.apellido  FROM trabajo, tecnico WHERE trabajo.detalle_informe_informe_servicio_id = " + 
-                    detalle_informe_informe_servicio_id + " and trabajo.detalle_informe_equipo_id = " + detalle_informe_equipo_id + " and trabajo.tecnico_id = tecnico.id " 
-                    + " ORDER BY(id) DESC";
+            String query = "SELECT trabajo.id, trabajo.fecha_inicio, trabajo.fecha_fin," + 
+                    " trabajo.costo, trabajo.descripcion, tecnico.nombre, tecnico.apellido " + 
+                    " FROM trabajo, tecnico WHERE trabajo.detalle_informe_informe_servicio_id = " + 
+                    detalle_informe_informe_servicio_id + 
+                    " and trabajo.detalle_informe_equipo_id = " + detalle_informe_equipo_id + 
+                    " and trabajo.tecnico_id = tecnico.id " + " ORDER BY(id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 

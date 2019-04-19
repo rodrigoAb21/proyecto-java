@@ -173,7 +173,12 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
 
         selector_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        txt_fecha_finalizacion.setText("DD/MM/AAAA");
+
         jLabel10.setText("F. FINALIZACION");
+
+        txt_fecha_recepcion.setText("DD/MM/AAAA");
+        txt_fecha_recepcion.setToolTipText("");
 
         jLabel5.setText("CLIENTE");
 
@@ -235,7 +240,7 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                                         .addGap(32, 32, 32)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txt_id)
-                                            .addComponent(txt_fecha_recepcion)))
+                                            .addComponent(txt_fecha_recepcion, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel10)
@@ -386,6 +391,8 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                 btn_finalizar.setEnabled(false);
                 break;  
         }
+        
+        limpiarTablaDetalle();
     }//GEN-LAST:event_tabla_serviciosMouseClicked
         
     
@@ -409,6 +416,8 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
         btn_quitar.setEnabled(false);
         btn_trabajos.setEnabled(false);
         btn_finalizar.setEnabled(false);
+        
+        limpiarTablaDetalle();
     }
     
      public void limpiarDetalle(){
@@ -475,10 +484,14 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
                 btn_trabajos.setEnabled(true);
                 break;  
         }
-        
-        
-        
-        
+    
+    }
+     
+    public void limpiarTablaDetalle(){
+        selector_equipo.setSelectedIndex(0);
+        txt_observacion.setText("");
+        DefaultTableModel dfm2 = new DefaultTableModel();
+        tabla_detalle.setModel(dfm2);
     }
     
     public void cargarSelectorCliente(ArrayList<ArrayList> clientes) {
@@ -492,7 +505,8 @@ public class V_Informe_Servicio extends javax.swing.JFrame {
     public void cargarSelectorEquipo(ArrayList<ArrayList> equipos) {
         ArrayList t = new ArrayList();
         for (int i = 0; i < equipos.size(); i++) {
-            t.add(equipos.get(i).get(0) + ", " + equipos.get(i).get(1));
+            t.add(equipos.get(i).get(0) + " - " + equipos.get(i).get(1) + " - " 
+                    + equipos.get(i).get(2) + " - " + equipos.get(i).get(3));
         }
         this.selector_equipo.setModel(new DefaultComboBoxModel(t.toArray()));
     }

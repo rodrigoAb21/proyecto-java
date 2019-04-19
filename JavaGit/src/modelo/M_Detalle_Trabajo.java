@@ -89,7 +89,9 @@ public class M_Detalle_Trabajo {
         ArrayList<ArrayList> detalles = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT detalle_trabajo.herramienta_id, herramienta.descripcion, herramienta.marca  FROM detalle_trabajo, herramienta WHERE trabajo_id = ? and detalle_trabajo.herramienta_id = herramienta.id ORDER BY(herramienta_id) DESC";
+            String query = "SELECT detalle_trabajo.herramienta_id, herramienta.descripcion, " + 
+                    "herramienta.marca  FROM detalle_trabajo, herramienta WHERE trabajo_id = ? " + 
+                    "and detalle_trabajo.herramienta_id = herramienta.id ORDER BY(herramienta_id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ps.setInt(1, trabajo_id);
             ResultSet rs = ps.executeQuery();
