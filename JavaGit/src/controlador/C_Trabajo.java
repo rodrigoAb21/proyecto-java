@@ -29,12 +29,13 @@ public class C_Trabajo implements ActionListener {
     private int equipo_id;
     
 
-    public C_Trabajo(int informe_id, int equipo_id, String estado) {
+    public C_Trabajo(int informe_id, int equipo_id, String estado, String titulo) {
         this.modelo_trabajo = new M_Trabajo();
         this.modelo_tecnico = new M_Tecnico();
         this.modelo_herramienta = new M_Herramienta();
         this.modelo_detalle = new M_Detalle_Trabajo();
         this.vista_trabajo = new V_Trabajo(estado);
+        vista_trabajo.setTitle("GESTIONAR TRABAJO: " + titulo);
         this.informe_id = informe_id;
         this.equipo_id = equipo_id;
         
