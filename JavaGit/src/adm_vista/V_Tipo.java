@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package adm_vista;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import modelo.M_Tipo;
+import adm_modelo.M_Tipo;
 
 /**
  *

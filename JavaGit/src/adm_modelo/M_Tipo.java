@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
+package adm_modelo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,16 +14,20 @@ import java.util.ArrayList;
  *
  * @author KAKU
  */
-public class M_Herramienta {
+public class M_Tipo {
     private int id;
-    private String descripcion;
-    private String marca;
+    private String nombre;
     private ConexionBD db;
 
-    public M_Herramienta() {
+    public M_Tipo(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+        db = new ConexionBD();
+    }
+
+    public M_Tipo() {
         this.id = 0;
-        this.descripcion = "";
-        this.marca = "";
+        this.nombre = "";
         db = new ConexionBD();
     }
     
@@ -35,63 +39,51 @@ public class M_Herramienta {
         this.id = id;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
    
     
     
     // METODOS
-    public boolean registrar(String descripcion, String marca){
+    public boolean registrar(String nombre){
         try {
             db.conectar();
-            String sql = "INSERT INTO herramienta (descripcion, marca) " + 
-                    " VALUES (?, ?)" ;
+            String sql = "INSERT INTO tipo (nombre) " + 
+                    " VALUES (?)" ;
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, descripcion);
-            ps.setString(2, marca);
+            ps.setString(1, nombre);
             
             int i = ps.executeUpdate();
             db.desconectar();
             return i > 0;
             
         } catch (SQLException e) {
-            System.out.println("No se pudo registrar la herramienta");
+            System.out.println("No se pudo registrar el tipo");
             System.out.println(e.getMessage());
             return false;
         }
     }
     
-    public boolean editar(int id, String descripcion, String marca){
+    public boolean editar(int id, String nombre){
          try {
             db.conectar();
-            String sql = "UPDATE herramienta SET " + 
-                    "descripcion = ?, " +
-                    "marca = ? " + "WHERE id = ?";
+            String sql = "UPDATE tipo SET " + 
+                    "nombre = ? " + "WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
-            ps.setString(1, descripcion);
-            ps.setString(2, marca);
-            ps.setInt(3, id);
+            ps.setString(1, nombre);
+            ps.setInt(2, id);
             
             int i = ps.executeUpdate();
             db.desconectar();
             return i > 0;
             
         } catch (SQLException e) {
-            System.out.println("No se pudo editar la herramienta");
+            System.out.println("No se pudo editar el tipo");
             System.out.println(e.getMessage());
             return false;
         }
@@ -100,7 +92,7 @@ public class M_Herramienta {
     public boolean eliminar(int id){
            try {
             db.conectar();
-            String sql = "DELETE FROM herramienta WHERE id = ?";
+            String sql = "DELETE FROM tipo WHERE id = ?";
             PreparedStatement ps = db.getConexion().prepareStatement(sql);
             ps.setInt(1, id);
             
@@ -109,62 +101,62 @@ public class M_Herramienta {
             return i > 0;
             
         } catch (SQLException e) {
-            System.out.println("No se pudo eliminar la herramienta");
+            System.out.println("No se pudo eliminar el tipo");
             System.out.println(e.getMessage());
             return false;
         }
     }
     
-    public ArrayList<ArrayList> getHerramientas(){
-        ArrayList<ArrayList> herramientas = new ArrayList();
+    public ArrayList<ArrayList> getTipos(){
+        ArrayList<ArrayList> tipos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM herramienta ORDER BY(id) DESC";
+            String query = "SELECT * FROM tipo ORDER BY(id) DESC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                ArrayList herramienta = new ArrayList();
-                herramienta.add(rs.getInt("id"));
-                herramienta.add(rs.getString("descripcion"));
-                herramienta.add(rs.getString("marca"));
+                ArrayList tipo = new ArrayList();
+                tipo.add(rs.getInt("id"));
+                tipo.add(rs.getString("nombre"));
                 
-                herramientas.add(herramienta);
+                tipos.add(tipo);
             }
             
             db.desconectar();
             
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener las herramientas.");
+            System.out.println("No se pudo obtener los tipos.");
             System.out.println(e.getMessage());
         }
-        return herramientas;
+        return tipos;
     }
     
-     public ArrayList<ArrayList> getHerramientasAsc(){
-        ArrayList<ArrayList> herramientas = new ArrayList();
+        public ArrayList<ArrayList> getTiposAsc(){
+          ArrayList<ArrayList> tipos = new ArrayList();
         try {
             db.conectar();
-            String query = "SELECT * FROM herramienta ORDER BY(id) ASC";
+            String query = "SELECT * FROM tipo ORDER BY(id) ASC";
             PreparedStatement ps = db.getConexion().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()){
-                ArrayList herramienta = new ArrayList();
-                herramienta.add(rs.getInt("id"));
-                herramienta.add(rs.getString("descripcion"));
-                herramienta.add(rs.getString("marca"));
+                ArrayList tipo = new ArrayList();
+                tipo.add(rs.getInt("id"));
+                tipo.add(rs.getString("nombre"));
                 
-                herramientas.add(herramienta);
+                tipos.add(tipo);
             }
             
             db.desconectar();
             
         } catch (SQLException e) {
-            System.out.println("No se pudo obtener las herramientas.");
+            System.out.println("No se pudo obtener los tipos.");
             System.out.println(e.getMessage());
         }
-        return herramientas;
+        return tipos;
     }
+    
 }
+
 
