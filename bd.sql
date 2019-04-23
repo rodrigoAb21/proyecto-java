@@ -360,3 +360,15 @@ END$$
 
 DELIMITER ;
 
+DROP trigger IF EXISTS `disp_actualizar2_delete`;
+
+DELIMITER $$
+USE `arquitectura`$$
+CREATE trigger disp_actualizar2_delete after delete on detalle_informe
+for each row
+BEGIN
+    call proc_actualizar_informe(old.informe_servicio_id);
+END$$
+
+DELIMITER ;
+
