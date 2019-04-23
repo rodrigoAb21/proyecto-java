@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adm_controlador;
+package administracion.adm_controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import adm_modelo.M_Informe_Servicio;
-import adm_modelo.M_Cliente;
-import adm_modelo.M_Detalle_Informe;
-import adm_modelo.M_Equipo;
-import adm_vista.V_Informe_Servicio;
+import administracion.adm_modelo.M_Informe_Servicio;
+import administracion.adm_modelo.M_Cliente;
+import administracion.adm_modelo.M_Detalle_Informe;
+import administracion.adm_modelo.M_Equipo;
+import administracion.adm_vista.V_Informe_Servicio;
 
 /**
  *

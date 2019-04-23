@@ -3,31 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adm_vista;
+package administracion.adm_vista;
 
 import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
-import adm_modelo.M_Equipo;
-import adm_modelo.M_Tipo;
+import administracion.adm_modelo.M_Herramienta;
 
 /**
  *
  * @author KAKU
  */
-public class V_Equipo extends javax.swing.JFrame {
+public class V_Herramienta extends javax.swing.JFrame {
 
     /**
      * Creates new form Vista_Principal
      */
-    public V_Equipo() {
+    public V_Herramienta() {
         initComponents();
-         // Seteo de propiedades de la vista antes de ser mostrada
+        
         this.setDefaultCloseOperation(2);
-        txt_id.setEditable(false);
-        btn_editar.setEnabled(false);
-        btn_eliminar.setEnabled(false);
         this.setVisible(true);
+        this.txt_id.setEditable(false);
+        this.btn_editar.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
     }
 
     /**
@@ -40,34 +38,24 @@ public class V_Equipo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
-        txt_modelo = new javax.swing.JTextField();
-        txt_nro_serie = new javax.swing.JTextField();
-        txt_marca = new javax.swing.JTextField();
+        txt_descripcion = new javax.swing.JTextField();
         btn_registrar = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
         btn_limpiar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        selector_tipo = new javax.swing.JComboBox<>();
+        txt_marca = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("GESTIONAR EQUIPOS");
+        setTitle("GESTIONAR HERRAMIENTAS");
 
         jLabel1.setText("ID");
 
-        jLabel2.setText("MODELO");
-
-        jLabel3.setText("NRO SERIE");
-
-        jLabel4.setText("MARCA");
-
-        jLabel5.setText("TIPO");
+        jLabel3.setText("DESCRIPCION");
 
         btn_registrar.setText("REGISTRAR");
 
@@ -92,7 +80,7 @@ public class V_Equipo extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
-        selector_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel4.setText("MARCA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,66 +93,49 @@ public class V_Equipo extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                                .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_nro_serie, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(selector_tipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btn_registrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_editar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_eliminar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_limpiar)))))
+                                .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(10, 10, 10)
+                        .addComponent(btn_registrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_editar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_eliminar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_limpiar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(selector_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_nro_serie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_registrar)
-                        .addComponent(btn_editar)
-                        .addComponent(btn_eliminar)
-                        .addComponent(btn_limpiar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_marca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(btn_registrar)
+                    .addComponent(btn_editar)
+                    .addComponent(btn_eliminar)
+                    .addComponent(btn_limpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -176,22 +147,13 @@ public class V_Equipo extends javax.swing.JFrame {
         DefaultTableModel m = (DefaultTableModel) tabla.getModel();
         int fila = tabla.getSelectedRow();
         txt_id.setText(m.getValueAt(fila, 0).toString());
-        txt_modelo.setText(m.getValueAt(fila, 1).toString());
-        txt_nro_serie.setText(m.getValueAt(fila, 2).toString());
-        txt_marca.setText(m.getValueAt(fila, 3).toString());
-        
-        DefaultComboBoxModel c = (DefaultComboBoxModel) selector_tipo.getModel();
-        for (int i = 0; i < c.getSize(); i++) {
-            String tipo[] = selector_tipo.getItemAt(i).toString().split("-");
-            if (m.getValueAt(fila, 4).toString().equals(tipo[1].trim())) {
-                selector_tipo.setSelectedIndex(i);
-                break;
-            }
-        }
+        txt_descripcion.setText(m.getValueAt(fila, 1).toString());
+        txt_marca.setText(m.getValueAt(fila, 2).toString());
         
         btn_registrar.setEnabled(false);
         btn_editar.setEnabled(true);
         btn_eliminar.setEnabled(true);
+
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -200,8 +162,7 @@ public class V_Equipo extends javax.swing.JFrame {
     // FUNCIONES PROPIAS
     public void limpiarCampos(){
         txt_id.setText("");
-        txt_modelo.setText("");
-        txt_nro_serie.setText("");
+        txt_descripcion.setText("");
         txt_marca.setText("");
         
         btn_registrar.setEnabled(true);
@@ -209,34 +170,22 @@ public class V_Equipo extends javax.swing.JFrame {
         btn_eliminar.setEnabled(false);
     }
     
-    public void actualizarTabla(ArrayList<ArrayList> equipos){
+    public void actualizarTabla(ArrayList<ArrayList> herramientas){
         DefaultTableModel dtm = new DefaultTableModel();
         tabla.setModel(dtm);
         dtm.addColumn("ID");
-        dtm.addColumn("MODELO");
-        dtm.addColumn("NRO SERIE");
+        dtm.addColumn("DESCRIPCION");
         dtm.addColumn("MARCA");
-        dtm.addColumn("TIPO");
         
-        Object[] fila = new Object[5];
-        for (int i = 0; i < equipos.size(); i++) {
-            fila[0] = equipos.get(i).get(0);
-            fila[1] = equipos.get(i).get(1);
-            fila[2] = equipos.get(i).get(2);
-            fila[3] = equipos.get(i).get(3);
-            fila[4] = equipos.get(i).get(4);
+        Object[] fila = new Object[3];
+        for (int i = 0; i < herramientas.size(); i++) {
+            fila[0] = herramientas.get(i).get(0);
+            fila[1] = herramientas.get(i).get(1);
+            fila[2] = herramientas.get(i).get(2);
             
             dtm.addRow(fila);
         }
         
-    }
-    
-    public void cargarSelector(ArrayList<ArrayList> tipos) {
-        ArrayList t = new ArrayList();
-        for (int i = 0; i < tipos.size(); i++) {
-            t.add(tipos.get(i).get(0) + " - " + tipos.get(i).get(1));
-        }
-        this.selector_tipo.setModel(new DefaultComboBoxModel(t.toArray()));
     }
     
     
@@ -270,7 +219,7 @@ public class V_Equipo extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new V_Cliente().setVisible(true);
+//                new V_Tipo().setVisible(true);
 //            }
 //        });
 //    }
@@ -281,16 +230,12 @@ public class V_Equipo extends javax.swing.JFrame {
     public javax.swing.JButton btn_limpiar;
     public javax.swing.JButton btn_registrar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JComboBox<String> selector_tipo;
     public javax.swing.JTable tabla;
+    public javax.swing.JTextField txt_descripcion;
     public javax.swing.JTextField txt_id;
     public javax.swing.JTextField txt_marca;
-    public javax.swing.JTextField txt_modelo;
-    public javax.swing.JTextField txt_nro_serie;
     // End of variables declaration//GEN-END:variables
 }

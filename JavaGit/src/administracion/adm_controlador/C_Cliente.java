@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package adm_controlador;
+package administracion.adm_controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import adm_modelo.M_Cliente;
-import adm_vista.V_Cliente;
+import administracion.adm_modelo.M_Cliente;
+import administracion.adm_vista.V_Cliente;
 
 /**
  *
